@@ -1,0 +1,2592 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>libMedia</name>
+    </assembly>
+    <members>
+        <member name="F:libMedia.Mp3.mp3Meta._firstFrame">
+            <summary>
+            first audio frame; could be could be xing or vbri header
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.mp3Meta._id3DurationTag">
+            <summary>
+            duration of the audio block, as parsed from the optional ID3v2 "TLEN" tag
+            the Xing/VBRI header is more authoritative for bitrate calculations, if present.
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.mp3Meta._audioStats">
+            <summary>
+            number of frames and audio bytes - obtained by counting the entire file - slow!
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.mp3Meta._hasInconsistencies">
+            <summary>
+            flag that is set on parse error.
+            This might turn into an enum for different errors at some point
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.mp3Meta._sourceFileInfo">
+            <summary>
+            holds audio stream filename; opened afresh when we need the data
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.mp3Meta._payloadStart">
+            <summary>
+            offset from start of stream that the audio starts at
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.mp3Meta._payloadNumBytes">
+            <summary>
+            total length (bytes) of mp3 audio frames in the file,
+            could be different from what's declared in the header if the file is corrupt.
+            </summary>
+        </member>
+        <member name="M:libMedia.Mp3.mp3Meta.#ctor(System.IO.FileInfo,System.UInt32,System.UInt32,System.Nullable{System.TimeSpan})">
+            <summary>
+            construct audio file
+            passing in audio size and id3 length tag (if any) to help with bitrate calculations
+            </summary>
+            <param name="sourceFileInfo"></param>
+            <param name="audioStart"></param>
+            <param name="payloadNumBytes"></param>
+            <param name="id3DurationTag"></param>
+        </member>
+        <member name="M:libMedia.Mp3.mp3Meta.OpenAudioStream">
+            <summary>
+            the stream containing the audio data, wound to the start
+            </summary>
+            <remarks>
+            it is the caller's responsibility to dispose of the returned stream
+            and to call NumPayloadBytes to know how many bytes to read.
+            </remarks>
+        </member>
+        <member name="M:libMedia.Mp3.mp3Meta.CalculateAudioSHA1">
+            <summary>
+            calculate sha-1 of the audio data
+            </summary>
+        </member>
+        <member name="M:libMedia.Mp3.mp3Meta.ScanWholeFile">
+            <summary>
+            Count frames and bytes of file to see who's telling porkies
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Meta.DebugString">
+            <summary>
+            text info, e.g. the encoding standard of audio data in AudioStream
+            /// </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Meta.NumPayloadBytes">
+            <summary>
+            the number of bytes of data in AudioStream, always the real size of the file
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Meta.Header">
+            <summary>
+            the mp3 frame header number of bytes of audio data in AudioStream
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Meta.IsVbr">
+            <summary>
+            is it a VBR file? i.e. is it better encoding quality than cbr at the same bitrate?
+            first we make a guess based on the audio header found in the first frame.
+            </summary>
+            <remarks>
+            if the frame didn't have any strong opinions,
+            we don't check if the mp3 audio header bitrate is the same as the calculated bitrate
+            because a truncated file shows up as vbr (because the bitrates don't match)
+            and we just return false.
+            </remarks>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Meta.HasVbrHeader">
+            <summary>
+            does it have a VBR (VBRI, XING, INFO, LAME) header?
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Meta.NumAudioBytes">
+            <summary>
+            Number of bytes playable audio, VBR header priority, best for calculating bitrates
+            </summary>
+            <remarks>
+            if there is no xing/vbri header, it's the same as NumPayloadBytes
+            if the xing header doesn't have the audio bytes filled in, 
+            it can still return 'don't know, but you need to take one header off the file length'
+            </remarks>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Meta.NumPayloadFrames">
+            <summary>
+            Number of Frames in file (including the header frame)
+            VBR header priority, best for calculating bitrates
+            or if not present, calculated from the number of bytes in the audio block, as reported by the caller
+            This will be correct for CBR files, at least.
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Meta.NumAudioFrames">
+            <summary>
+            Number of Frames of playable audio
+            </summary>
+            <remarks>
+            if there is no xing/vbri header, it's the same as NumPayloadFrames
+            if the xing header doesn't have the audio frames filled in, 
+            it can still return 'don't know, but you need to take one header off the file length'
+            </remarks>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Meta.Duration">
+            <summary>
+            Number of seconds for bitrate calculations.
+            first get it from the xing/vbri headers,
+            then from the id3 TLEN tag,
+            then from the file size and initial frame bitrate.
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Meta.BitRateCalc">
+            <summary>
+            bitrate calculated from the id3 length tag, and the length of the audio
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Meta.BitRateMp3">
+            <summary>
+            bitrate published in the standard mp3 header
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Meta.BitRateVbr">
+            <summary>
+            vbr bitrate from xing or vbri header frame
+            audio without xing or vbri header returns null
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Meta.BitRate">
+            <summary>
+            overall best guess of bitrate; there's always a way of guessing it
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Meta.HasInconsistencies">
+            <summary>
+            did it parse without any errors?
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Meta.ParsingError">
+            <summary>
+            get the error from the parse operation, if any
+            </summary>
+            <remarks>
+            should the parse operation save all thrown exceptions here,
+            and not generate it on demand?
+            </remarks>
+        </member>
+        <member name="T:libMedia.Mp3.mp3Frame">
+            <summary>
+            Read mp3 frame
+            </summary>
+            <remarks>
+            additional info: http://www.codeproject.com/KB/audio-video/mpegaudioinfo.aspx
+            </remarks>
+        </member>
+        <member name="F:libMedia.Mp3.mp3Frame._frameBuffer">
+            <summary>
+            byte array containing entire raw frame data
+            correct size, even for free bitrate files
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.mp3Frame._header">
+            <summary>
+            MP3FrameHeader to work out how big the frame is
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.mp3Frame._headerBytes">
+            <summary>
+            size of mp3 standard header; offset to xing or vbri header (if present)
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Frame.Header">
+            <summary>
+            MP3FrameHeader has all sorts of info about a frame of raw mp3 audio
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Frame.FrameLengthInBytes">
+            <summary>
+            get stored frame length
+            </summary>
+            <remarks>
+            obtained from header, or distance between frames, at construction time.
+            </remarks>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Frame.DebugString">
+            <summary>
+            text info, e.g. the encoding standard of audio data in AudioStream
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Frame.IsVbr">
+            <summary>
+            is it a VBR file?
+            all we can do here is check the bitrate is not 'free' (which would imply CBR)
+            then FrameVbriHeader/FrameXingHeader can override it.
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Frame.NumPayloadBytes">
+            <summary>
+            Number of Bytes in file (including this header frame)
+            if VBR header not present, we can't know, so return null.
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Frame.NumAudioBytes">
+            <summary>
+            Number of bytes playable audio
+            if VBR header not present, we can't know, so return null.
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Frame.NumPayloadFrames">
+            <summary>
+            Number of Frames in file
+            if VBR header not present, we can't know, so return null.
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Frame.NumAudioFrames">
+            <summary>
+            Number of Frames of playable audio
+            if VBR header not present, we can't know, so return null.
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Frame.Duration">
+            <summary>
+            Number of seconds of playable audio
+            if VBR header not present, we can't know, so return null.
+            xing/vbri headers would overload this if they have better information
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Frame.BitRateMp3">
+            <summary>
+            bitrate published in the standard mp3 header
+            null for 'free' bitrate
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Frame.BitRateVbr">
+            <summary>
+            vbr bitrate from xing or vbri header frame
+            audio frame without xing or vbri header returns null
+            </summary>
+        </member>
+        <member name="M:libMedia.Mp3.mp3Frame.#ctor(System.Byte[])">
+            <summary>
+            construct AudioFrame from supplied bytes
+            </summary>
+            <param name="frameBuffer"></param>
+            <remarks>buffer is correct size, even for free bitrate files</remarks>
+        </member>
+        <member name="M:libMedia.Mp3.mp3Frame.#ctor(System.IO.Stream,libMedia.Mp3.mp3FrameHeader,System.UInt32,System.UInt32)">
+            <summary>
+            construct AudioFrame from a larger portion of the stream; don't rewind stream when done
+            </summary>
+            <param name="stream">source stream</param>
+            <param name="header">parsed header</param>
+            <param name="frameSize">size from header, or scanning for second frame of free bitrate file</param>
+            <param name="remainingBytes">number of bytes in audio block, as reported by the caller</param>
+        </member>
+        <member name="M:libMedia.Mp3.mp3Frame.#ctor(libMedia.Mp3.mp3Frame)">
+            <summary>
+            copy construct AudioFrame for derived classes
+            </summary>
+            <param name="other"></param>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Frame.IsXingHeader">
+            <summary>
+            does this frame contain the 'Xing' or 'Info' markers that make it a Xing VBR header?
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Frame.IsLameHeader">
+            <summary>
+            does this frame contain the 'Xing' or 'Info' markers that make it a Xing VBR header,
+            then the LAME marker a bit further along?
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3Frame.IsVbriHeader">
+            <summary>
+            does this frame contain the 'VBRI' marker that make it a fraunhofer VBR header?
+            </summary>
+        </member>
+        <member name="M:libMedia.Mp3.mp3Frame.ParseBigEndianWORD(System.Byte[],System.UInt32)">
+            <summary>
+            read 2 bytes as big-endian unsigned int from buffer
+            </summary>
+            <param name="buffer">input buffer</param>
+            <param name="index">read location</param>
+            <returns>parsed big-endian UInt16</returns>
+        </member>
+        <member name="M:libMedia.Mp3.mp3Frame.ParseBigEndianDWORD(System.Byte[],System.UInt32)">
+            <summary>
+            read 4 bytes as big-endian unsigned int from buffer
+            </summary>
+            <param name="buffer">input buffer</param>
+            <param name="index">read location</param>
+            <returns>parsed big-endian UInt32</returns>
+        </member>
+        <member name="M:libMedia.Mp3.mp3FrameFactory.CreateFrame(System.IO.Stream,System.UInt32)">
+            <summary>
+            seek and create derived type of AudioFrame from stream
+            </summary>
+            <param name="stream">source stream, advanced by length of the frame on read</param>
+            <param name="remainingBytes">number of bytes in audio block, as reported by the caller</param>
+            <returns>wrapper for derived type of AudioFrame</returns>
+        </member>
+        <member name="M:libMedia.Mp3.mp3FrameFactory.CreateFrame(System.Byte[])">
+            <summary>
+            create derived type of AudioFrame from buffer, or throw
+            </summary>
+            <param name="sourceBuffer"></param>
+            <returns>wrapper for derived type of AudioFrame</returns>
+        </member>
+        <member name="M:libMedia.Mp3.mp3FrameFactory.GetNextFrameOffset(System.IO.Stream,System.UInt32)">
+            <summary>
+            skip to start of next frame
+            </summary>
+            <param name="stream"></param>
+            <param name="remainingBytes"></param>
+            <returns>number of bytes skipped, not length of frame found!</returns>
+        </member>
+        <member name="M:libMedia.Mp3.mp3FrameFactory.CreateHeader(System.IO.Stream,System.UInt32)">
+            <summary>
+            Creates Header
+            </summary>
+            <remarks>
+            n.b. doesn't rewind the stream to the start of the frame.
+            If the caller wants to read the entire frame in one block, they'll have to rewind it themselves.
+            </remarks>
+            <param name="stream"></param>
+            <param name="remainingBytes"></param>
+            <returns>valid audio header, or null</returns>
+        </member>
+        <member name="M:libMedia.Mp3.mp3FrameFactory.Seek(System.IO.Stream,System.Int64)">
+            <summary>
+            Find the first occurrence of an mp3 header.
+            </summary>
+            <param name="stream">The stream to perform the search on.</param>
+            <param name="remainingBytes"></param>
+            <returns>number of bytes skipped; stream is at first mp3 header position.</returns>
+        </member>
+        <member name="M:libMedia.Mp3.mp3FrameFactory.ReadHeader(System.IO.Stream)">
+            <summary>
+            parse frame header, or throw.
+            </summary>
+            <param name="stream"></param>
+        </member>
+        <member name="P:libMedia.Mp3.mp3VbriFrame.DebugString">
+            <summary>
+            some text to show we decoded it correctly
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3VbriFrame.IsVbr">
+            <summary>
+            is it a VBR file?
+            I don't think the presence of a VBRI header necessarily implies a VBR file
+            and the absence of a VBR header doesn't imply it's not VBR either,
+            but it's a good indicator, so that's the best assumption here
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3VbriFrame.NumPayloadBytes">
+            <summary>
+            Number of Bytes in file (including this header frame)
+            (always present in VBRI header)
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3VbriFrame.NumAudioBytes">
+            <summary>
+            Number of bytes playable audio (i.e. excluding this header frame, 
+            but including the standard header bytes of normal audio frames))
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3VbriFrame.NumPayloadFrames">
+            <summary>
+            Number of Frames in file (including this header frame)
+            or if not present, calculated from the number of bytes in the audio block, as reported by the caller
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3VbriFrame.NumAudioFrames">
+            <summary>
+            Number of Frames of playable audio (i.e. excluding any header frame)
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3VbriFrame.Duration">
+            <summary>
+            Number of seconds from the id3 TLEN tag
+            vbri header *always* has better information
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3VbriFrame.BitRateVbr">
+            <summary>
+            vbr bitrate from vbri header frame
+            </summary>
+        </member>
+        <member name="M:libMedia.Mp3.mp3VbriFrame.#ctor(libMedia.Mp3.mp3Frame)">
+            <summary>
+            construct XingHeader frame from a pre-existing raw frame; "downcast".
+            </summary>
+            <param name="baseclass"></param>
+        </member>
+        <member name="T:libMedia.Mp3.mp3XingFrame.FieldsCode">
+            <summary>
+            Flags which indicate what fields are present, flags are combined with a logical OR. Field is mandatory.
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.mp3XingFrame.FieldsCode.Frames">
+            <summary>
+            Frames field is present
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.mp3XingFrame.FieldsCode.Bytes">
+            <summary>
+            Bytes field is present
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.mp3XingFrame.FieldsCode.Toc">
+            <summary>
+            TOC field is present
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.mp3XingFrame.FieldsCode.Quality">
+            <summary>
+            Quality indicator field is present
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3XingFrame.DebugString">
+            <summary>
+            some text to show we decoded it correctly
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3XingFrame.IsVbr">
+            <summary>
+            is it a VBR file?
+            A file with a 'Xing' header is VBR, an 'Info' header is CBR
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3XingFrame.NumPayloadBytes">
+            <summary>
+            Number of Bytes in file (including this header frame) (optional)
+            or if not present, the number of bytes in audio block, as reported by the caller
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3XingFrame.NumAudioBytes">
+            <summary>
+            Number of bytes playable audio (i.e. excluding this header frame, 
+            but including the standard header bytes of normal audio frames))
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3XingFrame.NumPayloadFrames">
+            <summary>
+            Number of Frames in file (including this header frame)
+            or if not present, null
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3XingFrame.NumAudioFrames">
+            <summary>
+            Number of Frames of playable audio (i.e. excluding this header frame)
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3XingFrame.Duration">
+            <summary>
+            Number of seconds from xing header
+            if not present, then the id3 TLEN tag
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3XingFrame.BitRateVbr">
+            <summary>
+            vbr bitrate from xing header frame
+            returns null where xing header doesn't have both frames and bytes
+            </summary>
+        </member>
+        <member name="M:libMedia.Mp3.mp3XingFrame.#ctor(libMedia.Mp3.mp3Frame)">
+            <summary>
+            construct XingHeader frame from a pre-existing raw frame; "downcast".
+            </summary>
+            <param name="baseclass"></param>
+        </member>
+        <member name="T:libMedia.Mp3.mp3FrameHeader">
+            <summary>
+            Read mp3 frame header
+            </summary>
+            <remarks>
+            additional info: http://www.codeproject.com/KB/audio-video/mpegaudioinfo.aspx
+            </remarks>
+        </member>
+        <member name="T:libMedia.Mp3.mp3FrameHeader.ChannelModeCode">
+            <summary>
+            stereo mode options
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.mp3FrameHeader.ChannelModeCode.Stereo">
+            <summary>
+            00 - full stereo (2 indepentent channels)
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.mp3FrameHeader.ChannelModeCode.JointStereo">
+            <summary>
+            01 - joint stereo (stereo encoded as sum + difference)
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.mp3FrameHeader.ChannelModeCode.DualMono">
+            <summary>
+            10 - two independent soundtracks (e.g. 2 languages)
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.mp3FrameHeader.ChannelModeCode.Mono">
+            <summary>
+            11 - just one channel
+            </summary>
+        </member>
+        <member name="T:libMedia.Mp3.mp3FrameHeader.EmphasisCode">
+            <summary>
+            emphasis options
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.mp3FrameHeader.EmphasisCode.None">
+            <summary>
+            00 - none
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.mp3FrameHeader.EmphasisCode.E5015">
+            <summary>
+            01 - 50/15 ms
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.mp3FrameHeader.EmphasisCode.Reserved">
+            <summary>
+            10 - reserved
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.mp3FrameHeader.EmphasisCode.CCIT">
+            <summary>
+            11 - CCIT J.17
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.mp3FrameHeader._headerBuffer">
+            <summary>
+            byte array containing at least 4 bytes of raw frame data
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.Valid">
+            <summary>
+            Simple validity check to verify all header fields are in legal ranges
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.VersionLayer">
+            <summary>
+            mpeg version and layer
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.Layer">
+            <summary>
+            mpeg layer
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.BitRate">
+            <summary>
+            bitrate for this frame
+            0 for "free", i.e. free format. The free bitrate must remain constant, 
+            and must be lower than the maximum allowed bitrate. 
+            VBR encoders usually select a different one of the standard bitrates for each frame.
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.SamplesPerSecond">
+            <summary>
+            samples per second; same for every frame
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.SamplesPerFrame">
+            <summary>
+            samples per frame; same for every frame
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.SecondsPerFrame">
+            <summary>
+            seconds per frame; same for every frame
+            e.g. 384 Samples/Frame / 44100 Samples/Second = 8.7mS each
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.IsFreeBitRate">
+            <summary>
+            is it a "free" bitrate file?
+            </summary>
+            <remarks>most frames know how big they are, but free bitrate files can only know their frame length at the file level.</remarks>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.PaddingSize">
+            <summary>
+            padding size; different for every frame
+            </summary>
+            <remarks>
+            Padding is used to exactly fit the bitrate.
+            As an example: 128kbps 44.1kHz layer II uses a lot of 418 bytes
+            and some of 417 bytes long frames to get the exact 128k bitrate. 
+            For Layer I slot is 32 bits (4 bytes) long
+            For Layer II and Layer III slot is 8 bits (1 byte) long.
+            </remarks>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.FrameLengthInBytes">
+            <summary>
+            length of this frame in bytes; different for every frame
+            bitrate calculation includes the standard header bytes of normal audio frames already
+            returns null for 'free' bitrate files
+            because parsing the audio coefficients to work out how long it should be is too much work.
+            If you want to know how long the frame is, ask the audio stream, not the header.
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.IdealisedFrameLengthInBytes">
+            <summary>
+            'ideal' length of a frame at this bitrate; returns double, disregards padding.
+            returns null for 'free' bitrate files
+            because parsing the audio coefficients to work out how long it should be is too much work.
+            If you want to know how long the frame should be, ask the audio stream, not the header.
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.ChecksumSize">
+            <summary>
+            checksum size
+            Protection = 0 - Protected by CRC (16bit crc follows header), 1 - Not protected
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.SideInfoSize">
+            <summary>
+            channel config block size; different for every frame
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.HeaderSize">
+            <summary>
+            size of standard header
+            NB not all these bytes will have been read in
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.CRCs">
+            <summary>
+            Checksum
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.Copyright">
+            <summary>
+            Copyright
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.Original">
+            <summary>
+            Original
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.Private">
+            <summary>
+            Private
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.IsMono">
+            <summary>
+            mono; must be same for every frame
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.ChannelMode">
+            <summary>
+            stereo mode; different for every frame
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.Emphasis">
+            <summary>
+            emphasis; different for every frame
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.mp3FrameHeader.DebugString">
+            <summary>
+            some text to show we decoded it correctly
+            </summary>
+        </member>
+        <member name="M:libMedia.Mp3.mp3FrameHeader.#ctor(System.Byte[])">
+            <summary>
+            construct MP3FrameHeader from 4 supplied bytes
+            </summary>
+            <param name="frameHeader"></param>
+        </member>
+        <member name="M:libMedia.Mp3.mp3FrameHeader.IsCompatible(libMedia.Mp3.mp3FrameHeader)">
+            <summary>
+            compare headers
+            </summary>
+        </member>
+        <member name="T:libMedia.Mp3.IMp3Meta">
+            <summary>
+            interface for audio stored in file or buffer
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.IMp3Meta.Header">
+            <summary>
+            the audio header in AudioStream
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.IMp3Meta.DebugString">
+            <summary>
+            the encoding standard of audio data in AudioStream
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.IMp3Meta.IsVbr">
+            <summary>
+            is it a VBR file? i.e. is it better encoding quality than cbr at the same bitrate?
+            audio frame without xing or vbri header just checks header bitrate is 'free'
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.IMp3Meta.NumPayloadBytes">
+            <summary>
+            the number of bytes of data in the Audio payload
+            always the real size of the file
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.IMp3Meta.NumAudioBytes">
+            <summary>
+            Number of bytes playable audio
+            VBR header priority, best for calculating bitrates
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.IMp3Meta.NumPayloadFrames">
+            <summary>
+            Number of Frames in file (including the header frame)
+            VBR header priority, best for calculating bitrates
+            or if not present, calculated from the number of bytes in the audio block, as reported by the caller
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.IMp3Meta.NumAudioFrames">
+            <summary>
+            Number of Frames of playable audio
+            VBR header priority, best for calculating bitrates
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.IMp3Meta.Duration">
+            <summary>
+            Number of seconds from the xing/vbri headers,
+            or from the id3 TLEN tag,
+            or null.
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.IMp3Meta.BitRateCalc">
+            <summary>
+            bit-rate calculated from the id3 length tag, and the length of the audio
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.IMp3Meta.BitRateMp3">
+            <summary>
+            bit-rate published in the standard mp3 header
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.IMp3Meta.BitRateVbr">
+            <summary>
+            the VBR bit-rate, if any
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.IMp3Meta.BitRate">
+            <summary>
+            overall best guess of bit-rate; there's always a way of guessing it
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.IMp3Meta.HasInconsistencies">
+            <summary>
+            did it parse without any errors?
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.IMp3Meta.ParsingError">
+            <summary>
+            get the error from the parse operation, if any
+            </summary>
+        </member>
+        <member name="M:libMedia.Mp3.IMp3Meta.OpenAudioStream">
+            <summary>
+            the stream containing the audio data, wound to the start
+            </summary>
+        </member>
+        <member name="M:libMedia.Mp3.IMp3Meta.CalculateAudioSHA1">
+            <summary>
+            calculate CRC of the audio data
+            </summary>
+        </member>
+        <member name="M:libMedia.Mp3.IMp3Meta.ScanWholeFile">
+            <summary>
+            Count frames and bytes of file to see who's telling porkies
+            </summary>
+        </member>
+        <member name="T:libMedia.Mp3.Mp3File">
+            <summary>
+            Manage MP3 file data with ID3v2 tags and audio data stream.
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.Mp3File._sourceFileInfo">
+            <summary>
+            name of source file
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.Mp3File._Mp3Meta">
+            <summary>
+            Current MP3Audio object - if re-assigned, owned by assigner.
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.Mp3File._audioReplaced">
+            <summary>
+            set to true if the audio is replaced
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.Mp3File._audioStart">
+            <summary>
+            offset from start of original stream that the original audio started at
+            </summary>
+        </member>
+        <member name="F:libMedia.Mp3.Mp3File._tagHandler">
+            <summary>
+            ID3v2 tag model at start of file
+            </summary>
+        </member>
+        <member name="M:libMedia.Mp3.Mp3File.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+        </member>
+        <member name="M:libMedia.Mp3.Mp3File.#ctor(System.IO.FileInfo)">
+            <summary>
+            Construct from file info; parse ID3 tags from stream and calculate where the audio must be
+            </summary>
+            <param name="fileinfo"></param>
+        </member>
+        <member name="P:libMedia.Mp3.Mp3File.Mp3Meta">
+            <summary>
+            wrapper for the object containing the audio payload
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.Mp3File.TagModel">
+            <summary>
+            ID3v2 tags represented by the Frame Model
+            </summary>
+        </member>
+        <member name="P:libMedia.Mp3.Mp3File.TagHandler">
+            <summary>
+            ID3v2 tags wrapped in an interpreter that gives you real properties for each supported frame 
+            </summary>
+        </member>
+        <member name="M:libMedia.Mp3.Mp3File.Update">
+            <summary>
+            Update ID3V2 and V1 tags in-situ if possible, or rewrite the file to add tags if necessary.
+            </summary>
+            <returns>bool true if the MP3FileData object is dirty after this</returns>
+        </member>
+        <member name="M:libMedia.Mp3.Mp3File.UpdatePacked">
+            <summary>
+            rewrite the file and ID3V2 and V1 tags with no padding.
+            </summary>
+            <returns>bool true if the MP3FileData object is dirty after this</returns>
+        </member>
+        <member name="M:libMedia.Mp3.Mp3File.UpdateNoV2tag">
+            <summary>
+            Update file and remove ID3V2 tag (if any); 
+            update file in-situ if possible, or rewrite the file to remove tag if necessary.
+            </summary>
+            <returns>bool true if the MP3FileData object is unusable after this</returns>
+        </member>
+        <member name="M:libMedia.Mp3.Mp3File.UpdateInSitu(System.UInt32)">
+            <summary>
+            UpdateInSitu
+            </summary>
+            <remarks>
+            doesn't make a backup as it's only modifying the tags not re-writing the audio
+            </remarks>
+            <param name="tagSizeComplete"></param>
+        </member>
+        <member name="M:libMedia.Mp3.Mp3File.RewriteFile(System.IO.FileInfo)">
+            <summary>
+            create new output file stream and write the ID3v2 block to it
+            </summary>
+            <remarks>
+            makes a backup as it's modifying the tags and re-writing the audio.
+            Always need to re-initialise the mp3 file wrapper if you use it after this runs
+            </remarks>
+            <param name="bakFileInfo">location of backup file - must be on same drive</param>
+        </member>
+        <member name="M:libMedia.Mp3.Mp3File.UpdateInSituNoV2tag">
+            <summary>
+            UpdateInSituNoV2tag
+            </summary>
+            <remarks>
+            doesn't make a backup as it's only modifying the tags not re-writing the audio
+            </remarks>
+        </member>
+        <member name="M:libMedia.Mp3.Mp3File.RewriteFileNoV2tag(System.IO.FileInfo)">
+            <summary>
+            create new output file stream and don't write the ID3v2 block to it
+            </summary>
+            <remarks>
+            makes a backup as it's re-writing the audio
+            Always need to re-initialise the mp3 file wrapper if you use it after this runs
+            </remarks>
+            <param name="bakFileInfo">location of backup file - must be on same drive</param>
+        </member>
+        <member name="M:libMedia.Mp3.Mp3File.CopyAudioStream(System.IO.FileStream)">
+            <summary>
+            
+            </summary>
+            <param name="writeStream"></param>
+        </member>
+        <member name="M:libMedia.Mp3.Mp3File.WriteID3v1(System.IO.Stream)">
+            <summary>
+            append or overwrite ID3v1 tag at the end of the audio
+            </summary>
+            <param name="stream"></param>
+        </member>
+        <member name="T:libMedia.ID3.Exceptions.InvalidFrameException">
+            <summary>
+            The exception is thrown when a frame is corrupt.
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.InvalidFrameException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.InvalidFrameException.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.InvalidFrameException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.InvalidFrameException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="inner"></param>
+        </member>
+        <member name="T:libMedia.ID3.Exceptions.InvalidPaddingException">
+            <summary>
+            The exception is thrown when the amount of padding 
+            doesn't match the space left over at the end of the ID3V2 tag.
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.InvalidPaddingException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.InvalidPaddingException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.InvalidPaddingException.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.InvalidPaddingException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.InvalidPaddingException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="inner"></param>
+        </member>
+        <member name="P:libMedia.ID3.Exceptions.InvalidPaddingException.Measured">
+            <summary>
+            the number of zero bytes actually found between the last frame in the id3v2 tag, and the first non-zero byte of audio.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Exceptions.InvalidPaddingException.Specified">
+            <summary>
+            the amount of space between the last frame in the id3v2 tag, and the specified end of the tag block.
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.InvalidPaddingException.#ctor(System.UInt32,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="measured"></param>
+            <param name="specified"></param>
+        </member>
+        <member name="P:libMedia.ID3.Exceptions.InvalidPaddingException.Message">
+            <summary>
+            overrides default message with a specific "Padding is corrupt" one
+            </summary>
+        </member>
+        <member name="T:libMedia.ID3.Exceptions.InvalidStructureException">
+            <summary>
+            The exception is thrown when some component of an mp3 file is permanently corrupt.
+            Re-reading the file will always give you the same error, 
+            as opposed to I/O or permission errors that can be usefully retried.
+            </summary>
+            <remarks>
+            "Exceptions should be marked [Serializable]"
+            http://www.codeproject.com/KB/architecture/exceptionbestpractices.aspx#Exceptionsshouldbemarked[Serializable]22
+            </remarks>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.InvalidStructureException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.InvalidStructureException.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.InvalidStructureException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.InvalidStructureException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="inner"></param>
+        </member>
+        <member name="T:libMedia.ID3.Exceptions.InvalidTagException">
+            <summary>
+            The exception is thrown when the tag is corrupt.
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.InvalidTagException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.InvalidTagException.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.InvalidTagException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.InvalidTagException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="inner"></param>
+        </member>
+        <member name="T:libMedia.ID3.Exceptions.TagNotFoundException">
+            <summary>
+            The exception is thrown when the tag is missing.
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.TagNotFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.TagNotFoundException.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.TagNotFoundException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:libMedia.ID3.Exceptions.TagNotFoundException.#ctor(System.String,System.Exception)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+             <param name="inner"></param>
+        </member>
+        <member name="T:libMedia.ID3.FrameDescription">
+            <summary>
+            Helper class to get a description of the frame identifiers.
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.FrameDescription._descriptions">
+            <summary>
+            Keep a relation between frame Frames and descriptions of them
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.FrameDescription.GetDescription(System.String)">
+            <summary>
+            Obtain a human description of a frame
+            </summary>
+            <param name="frameId">the four character frame id</param>
+            <returns>description of the tag</returns>
+        </member>
+        <member name="M:libMedia.ID3.FrameDescription.intitalize">
+            <summary>
+            Fill the hash with the frame descriptors
+            </summary>
+        </member>
+        <member name="T:libMedia.ID3.FrameFactory">
+             <summary>
+             Builder factory that creates frames
+             </summary>
+            <remarks>
+             The FrameFactory class creates the correct frame based on the four bytes each frame uses
+             to describe its type, also a description of the frame is added.
+            </remarks>
+        </member>
+        <member name="M:libMedia.ID3.FrameFactory.#cctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.FrameFactory.Build(System.String)">
+            <summary>
+            Builds a frame base, based on the frame tag type.
+            </summary>
+            <param name="frameId">The ID3v2 tag frame id</param>
+            <returns>Frame required for the frame type</returns>
+        </member>
+        <member name="T:libMedia.ID3.FrameHelper">
+            <summary>
+            Manage the Parsing or Creation of binary frames.
+            </summary>
+            <remarks>
+            The <b>FrameHelper</b> is a helper class that receives binary frame from a ID3v1 tag
+            and returns the correct parsed frame or form a frame creates a binary frame that can be
+            saved on an ID3v2 tag in a mp3 file.
+            </remarks>
+        </member>
+        <member name="P:libMedia.ID3.FrameHelper.Version">
+            <summary>
+            Get the ID3v2 Version
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.FrameHelper.Revision">
+            <summary>
+            Get the ID3v2 Revision
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.FrameHelper.#ctor(libMedia.ID3.TagHeader)">
+            <summary>
+            Create Frames depending on type
+            </summary>
+            <param name="header">ID3 Header</param>
+        </member>
+        <member name="M:libMedia.ID3.FrameHelper.Build(System.String,System.UInt16,System.Byte[])">
+            <summary>
+            Create a frame depending on the tag form its binary representation.
+            </summary>
+            <param name="frameId">type of frame</param>
+            <param name="flags">frame flags</param>
+            <param name="buffer">binary frame</param>
+            <returns>Frame of tag type</returns>
+        </member>
+        <member name="M:libMedia.ID3.FrameHelper.Make(libMedia.ID3.Frames.FrameBase,System.UInt16@)">
+            <summary>
+            Build a binary data frame form the frame object.
+            </summary>
+            <param name="frame">ID3 Frame</param>
+            <param name="flags">标志</param>
+            <returns>binary frame representation</returns>
+        </member>
+        <member name="T:libMedia.ID3.Frames.FrameAttribute">
+            <summary>
+            Define the type of frame
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameAttribute.#ctor(System.String)">
+            <summary>
+            The frameId represented
+            </summary>
+            <param name="frameId">a frameId</param>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameAttribute.FrameId">
+            <summary>
+            Get the frameId
+            </summary>
+        </member>
+        <member name="T:libMedia.ID3.Frames.FrameBase">
+            <summary>
+            Abstract base frame that provides common functionality to all the frames.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameBase.TagAlter">
+            <summary>
+            Get or set the tag alter flag</summary>
+            <remarks>
+            This flag tells the tag parser what to do with this frame if it is
+            unknown and the tag is altered in any way.																												the frames.
+            </remarks>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameBase.FileAlter">
+            <summary>
+            Get or set the file alter flag
+            </summary>
+            <remarks>
+            This flag tells the tag parser what to do with this frame if it is
+            unknown and the file, excluding the tag, is altered.
+            </remarks>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameBase.ReadOnly">
+            <summary>
+            Get or set the read only flag
+            </summary>
+            <remarks>
+            This flag, if set, tells the software that the contents of this
+            frame are intended to be read only.
+            </remarks>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameBase.Compression">
+            <summary>
+            Get or set the compression flag.
+            </summary>
+            <remarks>
+            This flag indicates whether or not the frame is compressed.
+            </remarks>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameBase.Encryption">
+            <summary>
+            Get or set the encryption flag.
+            </summary>
+            <remarks>
+            This flag indicates whether or not the frame is encrypted.
+            </remarks>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameBase.Unsynchronisation">
+            <summary>
+            Get or set the un-synchronisation flag.
+            </summary>
+            <remarks>
+            This flag indicates whether or not un-synchronisation was applied to this frame.
+            </remarks>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameBase.DataLength">
+            <summary>
+            Get or set the data length.
+            </summary>
+            <remarks>
+            This flag indicates that a data length indicator has been added to the frame.
+            </remarks>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameBase.Group">
+            <summary>
+            Get or set the group, if undefined there is no grouping enabled. 
+            </summary> 
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameBase.FrameId">
+            <summary>
+            ID3 Frame Id frame type
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameBase.Parse(System.Byte[])">
+            <summary>
+            Load frame form binary data
+            </summary>
+            <param name="frame">binary frame representation</param>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameBase.Make">
+            <summary>
+            Save frame to binary data
+            </summary>
+            <returns>binary frame representation</returns>
+        </member>
+        <member name="T:libMedia.ID3.Frames.FrameBinary">
+            <summary>
+            Manage general encapsulated objects.
+            </summary>
+            <remarks>
+            The <b>FrameBinary</b> class handles GEOB ID3v2 frame types that can hold any type of file
+            or binary data encapsulated.
+            </remarks>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameBinary.#ctor(System.String)">
+            <summary>
+            Create a FrameGEOB frame.
+            </summary>
+            <param name="frameId">ID3v2 GEOB frame</param>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameBinary.TextEncoding">
+            <summary>
+            Type of text encoding
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameBinary.Mime">
+            <summary>
+            Text MIME type
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameBinary.Description">
+            <summary>
+            Frame description
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameBinary.ObjectData">
+            <summary>
+            Binary representation of the object
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameBinary.Parse(System.Byte[])">
+            <summary>
+            Parse the binary GEOB frame
+            </summary>
+            <param name="frame">binary frame</param>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameBinary.Make">
+            <summary>
+            Create a binary GEOB frame
+            </summary>
+            <returns>binary frame</returns>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameBinary.ToString">
+            <summary>
+            GEOB frame description 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:libMedia.ID3.Frames.FrameFullText">
+            <summary>
+            Manages unsynchronised lyrics and comment frames.
+            </summary>
+            <remarks>
+            Text encoding        $xx
+            Language             $xx xx xx
+            Content descriptor   text string according to encoding, $00 (00)
+            Lyrics/text          full text string according to encoding
+            </remarks>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameFullText.#ctor(System.String)">
+            <summary>
+            Create a FrameLCText frame.
+            </summary>
+            <param name="frameId">ID3v2 type of text frame</param>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameFullText.TextCode">
+            <summary>
+            Get or set the type of text encoding the frame is using.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameFullText.Description">
+            <summary>
+            Get or set the description of the frame contents.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameFullText.Text">
+            <summary>
+            Get or set the main text data.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameFullText.Language">
+            <summary>
+            Get or set the Language the main text uses.
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameFullText.Parse(System.Byte[])">
+            <summary>
+            Parse binary data unsynchronised lyrics/comment frame.
+            </summary>
+            <param name="frame">binary frame data</param>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameFullText.Make">
+            <summary>
+            Create binary data from unsynchronised lyrics/comment frame 
+            </summary>
+            <returns>binary frame data</returns>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameFullText.ToString">
+            <summary>
+            Default frame description.
+            </summary>
+            <returns>unsynchronised lyrics/comment text</returns>
+        </member>
+        <member name="T:libMedia.ID3.Frames.PictureTypeCode">
+            <summary>
+            Types of images
+            (technically you can have a picture of each type in a single file)
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Frames.PictureTypeCode.Other">
+            <summary>
+            Other
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Frames.PictureTypeCode.Icon">
+            <summary>
+            32x32 pixels 'file icon' (PNG only)
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Frames.PictureTypeCode.OtherIcon">
+            <summary>
+            Other file icon
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Frames.PictureTypeCode.CoverFront">
+            <summary>
+            Cover (front)
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Frames.PictureTypeCode.CoverBack">
+            <summary>
+            Cover (back)
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Frames.PictureTypeCode.Leaflet">
+            <summary>
+            Leaflet page
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Frames.PictureTypeCode.Media">
+            <summary>
+            Media (e.g. label side of CD)
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Frames.PictureTypeCode.LeadArtist">
+            <summary>
+            Lead artist/lead performer/soloist
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Frames.PictureTypeCode.Artist">
+            <summary>
+            Artist/performer
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Frames.PictureTypeCode.Conductor">
+            <summary>
+            Conductor
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Frames.PictureTypeCode.Orchestra">
+            <summary>
+            Band/Orchestra
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Frames.PictureTypeCode.Composer">
+            <summary>
+            Composer
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Frames.PictureTypeCode.Lyricist">
+            <summary>
+            Lyricist/text writer
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Frames.PictureTypeCode.Location">
+            <summary>
+            Recording Location
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Frames.PictureTypeCode.Recording">
+            <summary>
+            During recording
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Frames.PictureTypeCode.Performance">
+            <summary>
+            During performance
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Frames.PictureTypeCode.Movie">
+            <summary>
+            Movie/video screen capture
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Frames.PictureTypeCode.Fish">
+            <summary>
+            A bright coloured fish
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Frames.PictureTypeCode.Illustration">
+            <summary>
+            Illustration
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Frames.PictureTypeCode.BandLogo">
+            <summary>
+            Band/artist logotype
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Frames.PictureTypeCode.StudioLogo">
+            <summary>
+            Publisher/Studio logotype
+            </summary>
+        </member>
+        <member name="T:libMedia.ID3.Frames.FramePicture">
+            <summary>
+            Picture Frame
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FramePicture.#ctor(System.String)">
+            <summary>
+            Picture Frame
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FramePicture.TextEncoding">
+            <summary>
+            Type of text encoding
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FramePicture.Mime">
+            <summary>
+            Picture MIME type
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FramePicture.PictureType">
+            <summary>
+            Description of the picture
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FramePicture.Description">
+            <summary>
+            Description of the picture
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FramePicture.PictureData">
+            <summary>
+            Binary data representing the picture
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FramePicture.Picture">
+            <summary>
+            System.Drawing.Image of the picture
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FramePicture.GetMimeType(System.Drawing.Image)">
+            <summary>
+            Get Mime Type form an image
+            </summary>
+            <remarks>http://programcsharp.com/blog/archive/2008/01/17/Get-the-MIME-type-of-a-System.Drawing-Image.aspx</remarks>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FramePicture.Parse(System.Byte[])">
+            <summary>
+            Load from binary data a picture frame
+            </summary>
+            <param name="frame">picture binary representation</param>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FramePicture.Make">
+            <summary>
+             Save picture frame to binary data
+            </summary>
+            <returns>picture binary representation</returns>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FramePicture.ToString">
+            <summary>
+            Get a description of the picture frame
+            </summary>
+            <returns>Picture description</returns>
+        </member>
+        <member name="T:libMedia.ID3.Frames.FramePlayCounter">
+            <summary>
+            Manage play counter frames.
+            </summary>
+            <remarks>
+              This frame's purpose is to be able to identify the audio file in a
+              database, that may provide more information relevant to the content.
+            </remarks>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FramePlayCounter.#ctor(System.String)">
+            <summary>
+            Create a Play Counter frame.
+            </summary>
+            <param name="frameId">ID3v2 PCNT frame</param>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FramePlayCounter.Counter">
+            <summary>
+            Get the number of times the song has been played
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FramePlayCounter.Parse(System.Byte[])">
+            <summary>
+            Parse the binary PCNT frame
+            </summary>
+            <param name="frame">binary frame</param>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FramePlayCounter.Make">
+            <summary>
+            Create a binary PCNT frame
+            </summary>
+            <returns>binary frame</returns>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FramePlayCounter.ToString">
+            <summary>
+            Unique Tag Identifer description 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:libMedia.ID3.Frames.FramePopularimeter">
+            <summary>
+            Manage popularimeter frames.
+            </summary>
+            <remarks>
+              The purpose of this frame is to specify how good an audio file is.
+            </remarks>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FramePopularimeter.#ctor(System.String)">
+            <summary>
+            Create a Play Counter frame.
+            </summary>
+            <param name="frameId">ID3v2 POPM frame</param>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FramePopularimeter.Rating">
+            <summary>
+            The rating is 1-255 where 1 is worst and 255 is best. 0 is unknown.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FramePopularimeter.Description">
+            <summary>
+            Email address
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FramePopularimeter.Counter">
+            <summary>
+            Get the number of times the song has been played
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FramePopularimeter.Parse(System.Byte[])">
+            <summary>
+            Parse the binary POPM frame
+            </summary>
+            <param name="frame">binary frame</param>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FramePopularimeter.Make">
+            <summary>
+            Create a binary POPM frame
+            </summary>
+            <returns>binary frame</returns>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FramePopularimeter.ToString">
+            <summary>
+            Unique Tag Identifer description 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:libMedia.ID3.Frames.FrameText">
+            <summary>
+            Manages Text frames
+            </summary>
+            <remarks>
+            The <b>FrameText</b> class handles the frames of text information these 
+            are often the most important frames, containing information like artist,
+            album and more. There may only be one text information frame of its kind in an tag.
+            
+            Text encoding        $xx
+            Information          text string(s) according to encoding
+            </remarks>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameText.#ctor(System.String)">
+            <summary>
+            Create a FrameText frame.
+            </summary>
+            <param name="frameId">ID3v2 type of text frame</param>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameText.TextCode">
+            <summary>
+            Get or set the type of text encoding, the frame is using.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameText.Text">
+            <summary>
+            Get or Set the text of the frame
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameText.Parse(System.Byte[])">
+            <summary>
+            Parse the text binary frame.
+            </summary>
+            <param name="frame">binary frame</param>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameText.Make">
+            <summary>
+            Create a text binary frame.
+            </summary>
+            <returns>binary frame</returns>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameText.ToString">
+            <summary>
+            Default Frame description.
+            </summary>
+            <returns>Text of the frame</returns>
+        </member>
+        <member name="T:libMedia.ID3.Frames.FrameTextUserDef">
+            <summary>
+            Manages User defined text TXXX Frames
+            </summary>
+            <remarks>
+            Text encoding        $xx
+            Content descriptor   text string according to encoding, $00 (00)
+            text                 text string according to encoding
+            </remarks>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameTextUserDef.#ctor(System.String)">
+            <summary>
+            Create a FrameLCText frame.
+            </summary>
+            <param name="frameId">ID3v2 type of text frame</param>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameTextUserDef.TextCode">
+            <summary>
+            Get or set the type of text encoding the frame is using.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameTextUserDef.Description">
+            <summary>
+            Get or set the description of the frame contents.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameTextUserDef.Text">
+            <summary>
+            Get or set the main text data.
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameTextUserDef.Parse(System.Byte[])">
+            <summary>
+            Parse binary data unsynchronised lyrics/comment frame.
+            </summary>
+            <param name="frame">binary frame data</param>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameTextUserDef.Make">
+            <summary>
+            Create binary data from unsynchronised lyrics/comment frame 
+            </summary>
+            <returns>binary frame data</returns>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameTextUserDef.ToString">
+            <summary>
+            Default frame description.
+            </summary>
+            <returns>unsynchronised lyrics/comment text</returns>
+        </member>
+        <member name="T:libMedia.ID3.Frames.FrameUniqueIdentifier">
+            <summary>
+            Manage unique identifier frames.
+            </summary>
+            <remarks>
+              This frame's purpose is to be able to identify the audio file in a
+              database, that may provide more information relevant to the content.
+            </remarks>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameUniqueIdentifier.#ctor(System.String)">
+            <summary>
+            Create a FrameGEOB frame.
+            </summary>
+            <param name="frameId">ID3v2 UFID frame</param>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameUniqueIdentifier.Description">
+            <summary>
+            Frame description
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameUniqueIdentifier.Identifier">
+            <summary>
+            Binary representation of the object
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameUniqueIdentifier.Parse(System.Byte[])">
+            <summary>
+            Parse the binary UFID frame
+            </summary>
+            <param name="frame">binary frame</param>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameUniqueIdentifier.Make">
+            <summary>
+            Create a binary UFID frame
+            </summary>
+            <returns>binary frame</returns>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameUniqueIdentifier.ToString">
+            <summary>
+            Unique Tag Identifier description 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:libMedia.ID3.Frames.FrameUnknown">
+            <summary>
+            Container for unknown frames.
+            </summary>
+            <remarks>
+            The <b>FrameUnknown</b> class handles unknown frames so they can be restored
+            or discarded later.
+            </remarks>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameUnknown.#ctor(System.String)">
+            <summary>
+            Create an unknown frame object.
+            </summary>
+            <param name="frameId">ID3v2 type of unknown frame</param>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameUnknown.Parse(System.Byte[])">
+            <summary>
+            Set the binary frame
+            </summary>
+            <param name="frame">binary frame unknown</param>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameUnknown.Make">
+            <summary>
+            Get a binary frame
+            </summary>
+            <returns>binary frame unknown</returns>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameUnknown.ToString">
+            <summary>
+            Default Frame description
+            </summary>
+            <returns>Unknown ID3 frameId</returns>
+        </member>
+        <member name="T:libMedia.ID3.Frames.FrameUrl">
+            <summary>
+            Manages predefined URL W*** (not WXXX) Frames
+            </summary>
+            <remarks>
+            URL               text string
+            </remarks>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameUrl.#ctor(System.String)">
+            <summary>
+            Create a URL frame
+            </summary>
+            <param name="frameId">Type of URL frame</param>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameUrl.Url">
+            <summary>
+            The URL page location
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameUrl.Uri">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameUrl.Parse(System.Byte[])">
+            <summary>
+            Parse the binary frame
+            </summary>
+            <param name="frame">binary frame</param>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameUrl.Make">
+            <summary>
+            Create a binary frame
+            </summary>
+            <returns>binary frame</returns>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameUrl.ToString">
+            <summary>
+            Default frame description
+            </summary>
+            <returns>URL text</returns>
+        </member>
+        <member name="T:libMedia.ID3.Frames.FrameUrlUserDef">
+            <summary>
+            Manages User defined URL WXXX Frames
+            </summary>
+            <remarks>
+            Text encoding     $xx
+            Description       text string according to encoding, $00 (00)
+            URL               text string
+            </remarks>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameUrlUserDef.#ctor(System.String)">
+            <summary>
+            Create a URL frame
+            </summary>
+            <param name="frameId">Type of URL frame</param>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameUrlUserDef.TextCode">
+            <summary>
+            Type of text encoding the frame is using
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameUrlUserDef.Description">
+            <summary>
+            Description of the frame contents
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.Frames.FrameUrlUserDef.URL">
+            <summary>
+            The URL page location
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameUrlUserDef.Parse(System.Byte[])">
+            <summary>
+            Parse the binary frame
+            </summary>
+            <param name="frame">binary frame</param>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameUrlUserDef.Make">
+            <summary>
+            Create a binary frame
+            </summary>
+            <returns>binary frame</returns>
+        </member>
+        <member name="M:libMedia.ID3.Frames.FrameUrlUserDef.ToString">
+            <summary>
+            Default frame description
+            </summary>
+            <returns>URL text</returns>
+        </member>
+        <member name="T:libMedia.ID3.Frames.IFrameDescription">
+            <summary>
+            Frame description
+            </summary>
+            <remarks>
+            Frames that have a description must include this interface, 
+            it will be used to make a validation that the frames are unique by description;
+            </remarks>
+        </member>
+        <member name="P:libMedia.ID3.Frames.IFrameDescription.Description">
+            <summary>
+            Description of the frame, it means different things on the specific frame.
+            </summary>
+        </member>
+        <member name="T:libMedia.ID3.ID3v1">
+            <summary>
+            Manage ID3v1 frames
+            </summary>
+            <remarks>
+            The <b>ID3v1</b> class can read an ID3v1 frame form a mp3 file returning the <see cref="P:libMedia.ID3.ID3v1.FrameModel"/> and
+            write an ID3v1 form the FrameModel to a mp3 file, it will ignore any fields not supported in ID3v1 tag format.
+            </remarks>
+        </member>
+        <member name="P:libMedia.ID3.ID3v1.TagLength">
+            <summary>
+            ID3v1 tag length
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.ID3v1.Song">
+            <summary>
+            Get the title/song name/content description.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.ID3v1.Artist">
+            <summary>
+            Get the lead performer/soloist.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.ID3v1.Year">
+            <summary>
+            Get the production year.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.ID3v1.Album">
+            <summary>
+            Get the album title.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.ID3v1.Comment">
+            <summary>
+            Get the track/artist comment.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.ID3v1.Track">
+            <summary>
+            Get the track number.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.ID3v1.Genre">
+            <summary>
+            Get the track genre.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.ID3v1.FrameModel">
+            <summary>
+            Get or set the ID3v2 FrameModel.
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.ID3v1.#ctor">
+            <summary>
+            ID3v1 tag manager
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.ID3v1.Deserialize(System.IO.Stream)">
+            <summary>
+            Load tag from stream
+            </summary>
+            <param name="stream">Binary stream to load</param>
+        </member>
+        <member name="M:libMedia.ID3.ID3v1.Serialize(System.IO.Stream)">
+            <summary>
+            Save tag from stream
+            </summary>
+            <param name="stream">Binary stream to save</param>
+        </member>
+        <member name="M:libMedia.ID3.ID3v1.Write(System.IO.Stream)">
+            <summary>
+            overwrite or append ID3v1 tag at current location in the stream
+            </summary>
+            <param name="stream"></param>
+        </member>
+        <member name="T:libMedia.ID3.TagExtendedHeader">
+            <summary>
+            ID3 Extended Header
+            </summary>
+            <remarks>
+            The extended header contains information that can provide further
+            insight in the structure of the tag, but is not vital to the correct
+            parsing of the tag information; hence the extended header is optional.
+            </remarks>
+        </member>
+        <member name="P:libMedia.ID3.TagExtendedHeader.Size">
+            <summary>
+            Get the size of the extended header
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.TagExtendedHeader.Deserialize(System.IO.Stream)">
+            <summary>
+            Load the ID3 extended header from a stream
+            </summary>
+            <param name="stream">Binary stream containing a ID3 extended header</param>
+        </member>
+        <member name="M:libMedia.ID3.TagExtendedHeader.Serialize(System.IO.Stream)">
+            <summary>
+            Save the ID3 extended header from a stream
+            </summary>
+            <param name="stream">Binary stream containing a ID3 extended header</param>
+        </member>
+        <member name="T:libMedia.ID3.TagHandler">
+            <summary>
+            Reduce the complexity the tag model to a simple interface
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagHandler.FrameModel">
+            <summary>
+            provide access to wrapped FrameModel
+            </summary>
+            <remarks>
+            it would be nice to remove this one day, and completely encapsulate a private FrameModel object
+            </remarks>
+        </member>
+        <member name="P:libMedia.ID3.TagHandler.Song">
+            <summary>
+            Get the title/song name/content description.
+            Song is a synonym of the Title
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagHandler.Title">
+            <summary>
+            Get the title / song name / content description.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagHandler.Artist">
+            <summary>
+            Get the lead performer/soloist.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagHandler.Album">
+            <summary>
+            Get the album title.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagHandler.Year">
+            <summary>
+            Get the production year.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagHandler.Composer">
+            <summary>
+            Get the composer.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagHandler.Genre">
+            <summary>
+            Get the track genre.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagHandler.Track">
+            <summary>
+            Get the track number.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagHandler.Disc">
+            <summary>
+            Get the disc number.
+            </summary>
+            <remarks>
+            The 'Part of a set' frame is a numeric string that describes which
+            part of a set the audio came from. This frame is used if the source
+            described in the "TALB" frame is divided into several mediums, e.g. a
+            double CD. The value MAY be extended with a "/" character and a
+            numeric string containing the total number of parts in the set. E.g.
+            "1/2".
+            </remarks>
+        </member>
+        <member name="P:libMedia.ID3.TagHandler.Length">
+            <summary>
+            Get the length.
+            the length of the audio file in milliseconds, represented as a numeric string.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagHandler.PaddingSize">
+            <summary>
+            Get the original padding size.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagHandler.Lyrics">
+            <summary>
+            Get the lyrics.
+            (technically: Un-synchronised lyrics/text transcription)
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagHandler.Comment">
+            <summary>
+            Get the track / artist comment.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagHandler.Picture">
+            <summary>
+            Get/Set the associated picture as System.Drawing.Image, or null reference
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.TagHandler.SetTextFrame(System.String,System.String)">
+            <summary>
+            Set the frame text
+            </summary>
+            <param name="frameId">Frame type</param>
+            <param name="message">Value set in frame</param>
+        </member>
+        <member name="M:libMedia.ID3.TagHandler.GetTextFrame(System.String)">
+            <summary>
+            Get the frame text
+            </summary>
+            <param name="frameId">Frame type</param>
+            <returns>Frame text</returns>
+        </member>
+        <member name="M:libMedia.ID3.TagHandler.SetFullTextFrame(System.String,System.String)">
+            <summary>
+            Set the frame full text
+            </summary>
+            <param name="frameId">Frame type</param>
+            <param name="message">Value set in frame</param>
+        </member>
+        <member name="M:libMedia.ID3.TagHandler.GetFullTextFrame(System.String)">
+            <summary>
+            Get a full text frame value
+            </summary>
+            <param name="frameId">Frame type</param>
+            <returns>Frame text</returns>
+        </member>
+        <member name="M:libMedia.ID3.TagHandler.FindFrame(System.String)">
+            <summary>
+            Find a frame in the model
+            </summary>
+            <param name="frameId">Frame type</param>
+            <returns>The found frame if found, otherwise null</returns>
+        </member>
+        <member name="M:libMedia.ID3.TagHandler.#ctor(libMedia.ID3.TagModel)">
+            <summary>
+            Attach to the TagModel
+            </summary>
+            <param name="frameModel">Frame model to handle</param>
+        </member>
+        <member name="T:libMedia.ID3.TagHeader">
+            <summary>
+            Manages the ID3v2 tag header.
+            </summary>
+            <remarks>
+             The <b>Header</b> class manages the first part of the ID3v2 tag that is the first ten bytes
+             of the ID3v1 tag.
+            </remarks>
+        </member>
+        <member name="P:libMedia.ID3.TagHeader.HeaderSize">
+            <summary>
+            Get the size of the header only.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagHeader.Version">
+            <summary>
+            Get or set ID3v2 major version number.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagHeader.Revision">
+            <summary>
+            Get or set the ID3v2 revision number.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagHeader.TagSize">
+            <summary>
+            Get or set the ID3v2 frames size, i.e. the tag excluding header and footer.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagHeader.TagSizeWithHeaderFooter">
+            <summary>
+            Get the minimum complete ID3v2 tag size, 
+            including header and footer but not including any padding.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagHeader.Unsync">
+            <summary>
+            Get or set if un-synchronisation is applied on all frames.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagHeader.ExtendedHeader">
+            <summary>
+            Get or set if the header is followed by an extended header.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagHeader.Experimental">
+            <summary>
+            Get or set if the tag is experimental stage.
+            </summary>
+            <remarks>
+            This flag shall always be set when the tag is in an experimental stage.
+            </remarks>
+        </member>
+        <member name="P:libMedia.ID3.TagHeader.Footer">
+            <summary>
+            Get or set if a footer is present at the end of the tag.
+            </summary>
+            <remarks>
+            Can't be used simultaneously with the frame padding they are mutually exclusive.
+            </remarks>
+        </member>
+        <member name="P:libMedia.ID3.TagHeader.Padding">
+            <summary>
+            Get if padding is applied on the tag.
+            </summary>
+            <remarks>
+            Can't be used simultaneously with the frame footer they are mutually exclusive.
+            </remarks>
+        </member>
+        <member name="P:libMedia.ID3.TagHeader.PaddingSize">
+            <summary>
+            Get or set the padding size, and thus padding.
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.TagHeader.Serialize(System.IO.Stream)">
+            <summary>
+            Save header into the stream.
+            </summary>
+            <param name="stream">Stream to save header</param>
+        </member>
+        <member name="M:libMedia.ID3.TagHeader.SerializeFooter(System.IO.Stream)">
+            <summary>
+            Save corresponding footer into the stream.
+            </summary>
+            <param name="stream">Stream to save header</param>
+        </member>
+        <member name="M:libMedia.ID3.TagHeader.Deserialize(System.IO.Stream)">
+            <summary>
+            Load header from the stream.
+            </summary>
+            <param name="stream">Stream to load header</param>
+        </member>
+        <member name="T:libMedia.ID3.TagManager">
+            <summary>
+            Handle the loading and saving of ID3 tags.
+            </summary>
+            <remarks>
+            The <c>FrameManager</c> class manages the conversion of a ID3v2 tag from binary form 
+            to a <see cref="T:libMedia.ID3.TagManager"/> that can be manipulated and saved later again to
+            a binary form.
+            </remarks>
+        </member>
+        <member name="M:libMedia.ID3.TagManager.Deserialize(System.IO.Stream)">
+            <summary>
+            Load the ID3v2 frames to a binary stream
+            </summary>
+            <param name="stream">Binary stream holding the ID3 Tag</param>
+            <returns>Model keeping the ID3 Tag structure</returns>
+        </member>
+        <member name="M:libMedia.ID3.TagManager.Serialize(libMedia.ID3.TagModel,System.IO.Stream)">
+            <summary>
+            Save the ID3v2 frames to a binary stream
+            </summary>
+            <param name="frameModel">Model keeping the ID3 Tag structure</param>
+            <param name="stream">Stream keeping the ID3 Tag</param>
+        </member>
+        <member name="T:libMedia.ID3.TagModel">
+            <summary>
+            Manages an ID3v2 tag as an object representation. 
+            </summary>
+            <remarks>
+            The <b>FrameModel</b> class represents a ID3v2 tag, it contains a <see cref="P:libMedia.ID3.TagModel.Header"/> that
+            handles the tag header, an <see cref="P:libMedia.ID3.TagModel.ExtendedHeader"/> that it is optional and 
+            stores the frames.
+            </remarks>
+        </member>
+        <member name="P:libMedia.ID3.TagModel.IsValid">
+            <summary>
+            id3v2 tags can not have "no frames"
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagModel.Header">
+            <summary>
+            Get or set the header.
+            </summary>
+        </member>
+        <member name="P:libMedia.ID3.TagModel.ExtendedHeader">
+            <summary>
+            Get or set extended header.
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.TagModel.InsertItem(System.Int32,libMedia.ID3.Frames.FrameBase)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <param name="item"></param>
+        </member>
+        <member name="M:libMedia.ID3.TagModel.SetItem(System.Int32,libMedia.ID3.Frames.FrameBase)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <param name="item"></param>
+        </member>
+        <member name="M:libMedia.ID3.TagModel.AddRange(System.Collections.Generic.IEnumerable{libMedia.ID3.Frames.FrameBase})">
+            <summary>
+            Add a range of frames
+            </summary>
+            <param name="frames">the frames to add</param>
+        </member>
+        <member name="M:libMedia.ID3.TagModel.UpdateSize">
+            <summary>
+            predict the size of the frames on disk (without any padding)
+            by streaming the tag to a dummy stream, which updates the stored size.
+            </summary>
+            <remarks>
+            Although the the padding is streamed out, 
+            the size isn't added on to Header.TagSize
+            </remarks>
+        </member>
+        <member name="T:libMedia.ID3.Utils.Memory">
+            <summary>
+            Provides static methods to compare, find, copy and clear a byte array.
+            </summary>
+        </member>
+        <member name="M:libMedia.ID3.Utils.Memory.Compare(System.Byte[],System.Byte[])">
+            <summary>
+            Compare two byte arrays and determine if they are equal
+            </summary>
+            <param name="b1">First byte array</param>
+            <param name="b2">Second byte array</param>
+            <returns>Returns true if the arrays are equal</returns>
+        </member>
+        <member name="M:libMedia.ID3.Utils.Memory.Extract(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Create a new array to hold specified bytes copied out of the source array
+            </summary>
+            <param name="src">Source array</param>
+            <param name="srcIndex">Offset of the source array</param>
+            <returns>Destination array</returns>
+            <param name="count">Number of bytes to extract</param>
+        </member>
+        <member name="M:libMedia.ID3.Utils.Memory.FindByte(System.Byte[],System.Byte,System.Int32)">
+            <summary>
+            Find a byte in the array
+            </summary>
+            <param name="src">Source array</param>
+            <param name="val">Byte value to find</param>
+            <param name="index">Offset of the source array</param>
+            <returns></returns>
+        </member>
+        <member name="M:libMedia.ID3.Utils.Memory.FindShort(System.Byte[],System.Int16,System.Int32)">
+            <summary>
+            Find a short in the array
+            </summary>
+            <param name="src">Source array</param>
+            <param name="val">Short value to find</param>
+            <param name="index">Offset of the source array</param>
+            <returns></returns>
+        </member>
+        <member name="M:libMedia.ID3.Utils.Memory.Clear(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Clear an array
+            </summary>
+            <param name="dst">Source array</param>
+            <param name="begin">Start position; first byte to clear</param>
+            <param name="end">End position; first byte not to clear</param>
+        </member>
+        <member name="M:libMedia.ID3.Utils.Memory.ToInt64(System.Byte[])">
+            <summary>
+            Get a unsigned long from a byte array
+            </summary>
+            <param name="value">a byte array from 1 to 8 bytes</param>
+            <returns>unsigned long</returns>
+        </member>
+        <member name="M:libMedia.ID3.Utils.Memory.GetBytes(System.UInt64)">
+            <summary>
+            get an array from the unsigned long of exactly 8 bytes
+            </summary>
+            <param name="value">unsigned long to convert to an array</param>
+            <returns>the used bytes form the unsigned long</returns>
+        </member>
+        <member name="T:libMedia.ID3.Utils.Swap">
+            <summary>
+            Performs byte swapping.
+            </summary>
+        </member>
+        <member name="T:libMedia.ID3.Utils.Sync">
+            <summary>
+            Provides static methods for making ID3v2 un-synchronisation
+            </summary>
+            <remarks>
+            This helper class takes care of the synchronisation and un-synchronisation needs.
+            The purpose of un-synchronisation is to make the ID3v2 tag as compatible as possible
+            with existing software and hardware.
+            
+            Synch safe integers are integers that keep its highest byte bit (bit 7) zeroed, making seven bits
+            out of every eight available.
+            </remarks>
+        </member>
+        <member name="M:libMedia.ID3.Utils.Sync.Unsafe(System.UInt32)">
+            <summary>
+            Converts from a sync-safe integer to a normal integer
+            </summary>
+            <param name="val">Little-endian Sync-safe value</param>
+            <returns>Little-endian normal value</returns>
+        </member>
+        <member name="M:libMedia.ID3.Utils.Sync.Safe(System.UInt32)">
+            <summary>
+            Converts from a normal integer to a sync-safe integer
+            </summary>
+            <param name="val">Big-endian normal value</param>
+            <returns>Big-endian sync-safe value</returns>
+        </member>
+        <member name="M:libMedia.ID3.Utils.Sync.UnsafeBigEndian(System.UInt32)">
+            <summary>
+            Converts from a sync-safe integer to a normal integer
+            </summary>
+            <param name="val">Big-endian Sync-safe value</param>
+            <returns>Big-endian normal value</returns>
+        </member>
+        <member name="M:libMedia.ID3.Utils.Sync.SafeBigEndian(System.UInt32)">
+            <summary>
+            Converts from a sync-safe integer to a normal integer
+            </summary>
+            <param name="val">Big-endian normal value</param>
+            <returns>Big-endian sync--safe value</returns>
+        </member>
+        <member name="M:libMedia.ID3.Utils.Sync.Unsafe(System.IO.Stream,System.IO.Stream,System.UInt32)">
+            <summary>
+            Convert a sync-safe stream to a normal stream
+            </summary>
+            <param name="src">Source stream</param>
+            <param name="dst">Destination stream</param>
+            <param name="size">Bytes to be processed</param>
+            <returns>Number of bytes removed from the original stream</returns>
+        </member>
+        <member name="M:libMedia.ID3.Utils.Sync.Safe(System.IO.Stream,System.IO.Stream,System.UInt32)">
+            <summary>
+            Convert from an unsafe or normal stream to a sync-safe stream 
+            </summary>
+            <param name="src">Source stream</param>
+            <param name="dst">Destination stream</param>
+            <param name="count">Bytes to be processed</param>
+            <returns>Number of bytes added to the original stream</returns>
+        </member>
+        <member name="T:libMedia.ID3.Utils.TextCode">
+            <summary>
+            Type of text used in frame
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Utils.TextCode.Ascii">
+            <summary>
+            ASCII(ISO-8859-1)
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Utils.TextCode.Utf16">
+            <summary>
+            Unicode with BOM
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Utils.TextCode.Utf16BE">
+            <summary>
+            BigEndian Unicode without BOM
+            </summary>
+        </member>
+        <member name="F:libMedia.ID3.Utils.TextCode.Utf8">
+            <summary>
+            Encoded Unicode
+            </summary>
+        </member>
+        <member name="T:libMedia.ID3.Utils.TextBuilder">
+            <summary>
+            Manages binary to text and vice versa format conversions.
+            </summary>
+        </member>
+        <member name="T:libMedia.InvalidFrameException">
+            <summary>
+            The exception is thrown when an audio frame is corrupt.
+            </summary>
+        </member>
+        <member name="M:libMedia.InvalidFrameException.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:libMedia.InvalidFrameException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:libMedia.InvalidFrameException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="inner"></param>
+        </member>
+        <member name="T:libMedia.InvalidVbrSizeException">
+            <summary>
+            The exception is for when the vbr header claims the audio
+            is a different length to the file size.
+            This can happen if the file has been truncated at some point in its history,
+            but could also be if unrecognised tags (non-id3, e.g. monkey audio) are added to the file.
+            It is not thrown as such, because it's not an error that needs the parse to fail.
+            </summary>
+        </member>
+        <member name="P:libMedia.InvalidVbrSizeException.Measured">
+            <summary>
+            the number of zero bytes found after the last frame in the id3v2 tag
+            </summary>
+        </member>
+        <member name="P:libMedia.InvalidVbrSizeException.Specified">
+            <summary>
+            the amount of space left over after the last frame in the id3v2 tag
+            </summary>
+        </member>
+        <member name="M:libMedia.InvalidVbrSizeException.#ctor(System.UInt32,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="measured"></param>
+            <param name="specified"></param>
+        </member>
+        <member name="P:libMedia.InvalidVbrSizeException.Message">
+            <summary>
+            overrides default message with a specific "Padding is corrupt" one
+            </summary>
+        </member>
+        <member name="T:Utils.FileMover">
+            <summary>
+            Provides FileMove function to wrap System.IO.File.Replace
+            </summary>
+        </member>
+        <member name="M:Utils.FileMover.FileMove(System.IO.FileInfo,System.IO.FileInfo,System.IO.FileInfo)">
+            <summary>
+            Securely moves a file to a new location. Overwrites any
+            preexisting file at new location (= replacing file).
+            </summary>
+            <remarks>
+            If NTFS is available this is done via File.Replace.
+            If NTFS is not available it will be moved via deleting
+            any preexisting file and moving. Do NOT rely on the
+            backupFile being there - or not - after the move process.
+            That is not predetermined. This method is clearly
+            optimized for the case that NTFS is available. Consider NOT
+            using it on any other filesystem, if performance is an issue!
+            </remarks>
+            <param name="sourceLocation">The file to be moved.</param>
+            <param name="targetLocation">The new resting place of the file.</param>
+            <param name="backupLocation">A backup location that is used when replacing.</param>
+        </member>
+    </members>
+</doc>

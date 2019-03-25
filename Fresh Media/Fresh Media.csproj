@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AD0DB52B-688A-45D2-987D-23D020FF9DD9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FreshMedia</RootNamespace>
+    <AssemblyName>FreshMedia</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>4096</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <PublishUrl>C:\Users\sens\Desktop\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <LangVersion>6</LangVersion>
+    <FileAlignment>4096</FileAlignment>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DocumentationFile>
+    </DocumentationFile>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>sens audio.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>FreshMedia.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>0778C6CD0F98CD1EBB5FF76E21993B95182AF45F</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NgNet.Core">
+      <HintPath>..\Shared\Libs\NgNet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NgNet.UI">
+      <HintPath>..\Shared\Libs\NgNet.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="NgNet.Winapp">
+      <HintPath>..\Shared\Libs\NgNet.Winapp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppConfigs.cs" />
+    <Compile Include="Data\Backup.cs" />
+    <Compile Include="Data\BakDefinition.cs" />
+    <Compile Include="Data\DataPaths.cs" />
+    <Compile Include="Data\enums.cs" />
+    <Compile Include="IFreshMedia.cs" />
+    <Compile Include="List\ItemNotFoundException.cs" />
+    <Compile Include="List\LibNotFoundException.cs" />
+    <Compile Include="List\ListNotFoundException.cs" />
+    <Compile Include="List\OpenHistory.cs" />
+    <Compile Include="Controller\MainController.cs" />
+    <Compile Include="Controller\PlayController.cs" />
+    <Compile Include="Error\Error.cs" />
+    <Compile Include="List\AudioLib.cs" />
+    <Compile Include="List\AudioList.cs" />
+    <Compile Include="List\delegates.cs" />
+    <Compile Include="List\ILibList.cs" />
+    <Compile Include="List\ListManager.cs" />
+    <Compile Include="List\SortedAudioList.cs" />
+    <Compile Include="Lyric\DesktopLyric.cs" />
+    <Compile Include="Lyric\delegates.cs" />
+    <Compile Include="Lyric\FormLyric.cs" />
+    <Compile Include="Lyric\IDesktopLyric.cs" />
+    <Compile Include="Lyric\IFormLyric.cs" />
+    <Compile Include="Lyric\ILyric.cs" />
+    <Compile Include="Lyric\ILyricStyle.cs" />
+    <Compile Include="Lyric\LyricApi.cs" />
+    <Compile Include="Lyric\LyricBase.cs" />
+    <Compile Include="Lyric\LyricDocument.cs" />
+    <Compile Include="Player\AudioInfo.cs" />
+    <Compile Include="Player\Enums.cs" />
+    <Compile Include="Player\EventArgs.cs" />
+    <Compile Include="Player\ICtControls.cs" />
+    <Compile Include="Player\IMedia.cs" />
+    <Compile Include="Player\IPlayer.cs" />
+    <Compile Include="Player\IPlayerBase.cs" />
+    <Compile Include="Player\IPlayList.cs" />
+    <Compile Include="Player\ISettings.cs" />
+    <Compile Include="Player\MediaPlayer.cs" />
+    <Compile Include="Player\Mepg4Player.cs" />
+    <Compile Include="Player\PlayerBase.cs" />
+    <Compile Include="Player\Types.cs" />
+    <Compile Include="Player\Utils.cs" />
+    <Compile Include="Plus\delegates.cs" />
+    <Compile Include="Plus\SleepMode.cs" />
+    <Compile Include="View\CommControls.cs" />
+    <Compile Include="View\FormEx.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lyric\IDesktopLyricF.cs" />
+    <Compile Include="View\AppNotfyIcon.cs" />
+    <Compile Include="View\VList\delegates.cs" />
+    <Compile Include="View\VList\LibMenu.cs" />
+    <Compile Include="View\VList\LibView.cs" />
+    <Compile Include="View\VList\ListMenu.cs" />
+    <Compile Include="View\VList\ListView.cs" />
+    <Compile Include="View\VList\SearchBox.cs" />
+    <Compile Include="View\VList\TreeViewEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\PositionBar.cs" />
+    <Compile Include="View\RestoreView.cs" />
+    <Compile Include="View\VSetting\ConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\VSetting\ConfigForm.designer.cs">
+      <DependentUpon>ConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\VSetting\enums.cs" />
+    <Compile Include="View\ThemeManager.cs" />
+    <Compile Include="View\InfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\InfoForm.Designer.cs">
+      <DependentUpon>InfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\Commands.cs" />
+    <Compile Include="Controller\HotkeysManager.cs" />
+    <Compile Include="View\ControlTexts.cs" />
+    <Compile Include="List\enums.cs" />
+    <Compile Include="View\VList\ViewManager.cs" />
+    <Compile Include="View\LyricMakerF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\LyricMakerF.Designer.cs">
+      <DependentUpon>LyricMakerF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\HotNotice.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DataManager.cs" />
+    <Compile Include="View\DesktopLyricF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DesktopLyricF.Designer.cs">
+      <DependentUpon>DesktopLyricF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lyric\LyricManager.cs" />
+    <Compile Include="Player\MCIPlayer.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\VolumePanel.cs" />
+    <EmbeddedResource Include="View\InfoForm.resx">
+      <DependentUpon>InfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DesktopLyricF.resx">
+      <DependentUpon>DesktopLyricF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\LyricMakerF.resx">
+      <DependentUpon>LyricMakerF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\VSetting\ConfigForm.resx">
+      <DependentUpon>ConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Shell32">
+      <Guid>{50A7E9B0-70EF-11D1-B75A-00A0C90564FE}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\setting_32_32.png" />
+    <None Include="Resources\lyricmaker_32_32.png" />
+    <Content Include="sens audio.ico" />
+    <None Include="Resources\siyecao.png" />
+    <None Include="Resources\item_playing.png" />
+    <None Include="Resources\item_paused.png" />
+    <None Include="Resources\search_Down.png" />
+    <None Include="Resources\search.png" />
+    <None Include="Resources\top.png" />
+    <None Include="Resources\Dir_2.png" />
+    <None Include="Resources\down.png" />
+    <None Include="Resources\dir_add.png" />
+    <None Include="Resources\dir_Del.png" />
+    <None Include="Resources\apple_green.png" />
+    <None Include="Resources\MUSICPNG.png" />
+    <None Include="Resources\MUSICPNG_1.png" />
+    <None Include="Resources\playmode_repeat_all.png" />
+    <None Include="Resources\playmode_repeat_single.png" />
+    <None Include="Resources\playmode_sequence.png" />
+    <None Include="Resources\playmode_random.png" />
+    <None Include="Resources\playmode_repeat_all_Down.png" />
+    <None Include="Resources\playmode_repeat_single_down.png" />
+    <None Include="Resources\playmode_sequence_down.png" />
+    <None Include="Resources\playmode_random_down.png" />
+    <None Include="Resources\location.png" />
+    <None Include="Resources\location_down.png" />
+    <None Include="Resources\Favorite.png" />
+    <None Include="Resources\History.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\libMedia\libMedia.csproj">
+      <Project>{e16e2254-a7a2-4e45-95b9-8613c67b3fd4}</Project>
+      <Name>libMedia</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
