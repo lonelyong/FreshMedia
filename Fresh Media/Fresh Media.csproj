@@ -63,7 +63,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>sens audio.ico</ApplicationIcon>
+    <ApplicationIcon>FreshMedia.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>FreshMedia.Program</StartupObject>
@@ -286,7 +286,7 @@
   <ItemGroup>
     <None Include="Resources\setting_32_32.png" />
     <None Include="Resources\lyricmaker_32_32.png" />
-    <Content Include="sens audio.ico" />
+    <Content Include="FreshMedia.ico" />
     <None Include="Resources\siyecao.png" />
     <None Include="Resources\item_playing.png" />
     <None Include="Resources\item_paused.png" />
