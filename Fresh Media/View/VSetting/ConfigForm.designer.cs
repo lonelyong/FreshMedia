@@ -101,8 +101,8 @@
             this.ContentPanel.Controls.Add(this.cancelButton);
             this.ContentPanel.Controls.Add(this.applyButton);
             this.ContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ContentPanel.Location = new System.Drawing.Point(3, 20);
-            this.ContentPanel.Size = new System.Drawing.Size(1620, 649);
+            this.ContentPanel.Location = new System.Drawing.Point(3, 26);
+            this.ContentPanel.Size = new System.Drawing.Size(1620, 643);
             // 
             // tabLyricLabel
             // 
@@ -149,7 +149,7 @@
             this.shutdownCheckBox.AutoSize = true;
             this.shutdownCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.shutdownCheckBox.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.shutdownCheckBox.Location = new System.Drawing.Point(126, 87);
+            this.shutdownCheckBox.Location = new System.Drawing.Point(126, 76);
             this.shutdownCheckBox.Name = "shutdownCheckBox";
             this.shutdownCheckBox.Size = new System.Drawing.Size(57, 16);
             this.shutdownCheckBox.TabIndex = 7;
@@ -162,7 +162,7 @@
             this.sleepTimeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sleepTimeButton.Location = new System.Drawing.Point(457, 52);
             this.sleepTimeButton.Name = "sleepTimeButton";
-            this.sleepTimeButton.Size = new System.Drawing.Size(84, 25);
+            this.sleepTimeButton.Size = new System.Drawing.Size(75, 23);
             this.sleepTimeButton.TabIndex = 5;
             this.sleepTimeButton.Text = "自定义";
             this.sleepTimeButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -176,7 +176,7 @@
             this.sleepTimeComboBox.ForeColor = System.Drawing.Color.OrangeRed;
             this.sleepTimeComboBox.FormattingEnabled = true;
             this.sleepTimeComboBox.ItemHeight = 12;
-            this.sleepTimeComboBox.Location = new System.Drawing.Point(126, 56);
+            this.sleepTimeComboBox.Location = new System.Drawing.Point(126, 49);
             this.sleepTimeComboBox.Name = "sleepTimeComboBox";
             this.sleepTimeComboBox.Size = new System.Drawing.Size(296, 20);
             this.sleepTimeComboBox.TabIndex = 4;
@@ -243,7 +243,7 @@
             this.desklrcFontStyleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.desklrcFontStyleComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.desklrcFontStyleComboBox.FormattingEnabled = true;
-            this.desklrcFontStyleComboBox.Location = new System.Drawing.Point(299, 56);
+            this.desklrcFontStyleComboBox.Location = new System.Drawing.Point(299, 50);
             this.desklrcFontStyleComboBox.Name = "desklrcFontStyleComboBox";
             this.desklrcFontStyleComboBox.Size = new System.Drawing.Size(121, 20);
             this.desklrcFontStyleComboBox.TabIndex = 18;
@@ -252,7 +252,7 @@
             // 
             this.desklrcFontStyleLabel.AutoSize = true;
             this.desklrcFontStyleLabel.ForeColor = System.Drawing.Color.DarkGreen;
-            this.desklrcFontStyleLabel.Location = new System.Drawing.Point(246, 60);
+            this.desklrcFontStyleLabel.Location = new System.Drawing.Point(246, 54);
             this.desklrcFontStyleLabel.Name = "desklrcFontStyleLabel";
             this.desklrcFontStyleLabel.Size = new System.Drawing.Size(41, 12);
             this.desklrcFontStyleLabel.TabIndex = 17;
@@ -265,7 +265,7 @@
             this.desklrcVisibleCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.desklrcVisibleCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.desklrcVisibleCheckBox.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.desklrcVisibleCheckBox.Location = new System.Drawing.Point(119, 174);
+            this.desklrcVisibleCheckBox.Location = new System.Drawing.Point(119, 148);
             this.desklrcVisibleCheckBox.Name = "desklrcVisibleCheckBox";
             this.desklrcVisibleCheckBox.Size = new System.Drawing.Size(45, 16);
             this.desklrcVisibleCheckBox.TabIndex = 14;
@@ -278,7 +278,7 @@
             this.desklrcColorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.desklrcColorComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.desklrcColorComboBox.FormattingEnabled = true;
-            this.desklrcColorComboBox.Location = new System.Drawing.Point(119, 142);
+            this.desklrcColorComboBox.Location = new System.Drawing.Point(119, 122);
             this.desklrcColorComboBox.Name = "desklrcColorComboBox";
             this.desklrcColorComboBox.Size = new System.Drawing.Size(301, 20);
             this.desklrcColorComboBox.TabIndex = 10;
@@ -312,7 +312,7 @@
             this.desklrcPlayedComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.desklrcPlayedComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.desklrcPlayedComboBox.FormattingEnabled = true;
-            this.desklrcPlayedComboBox.Location = new System.Drawing.Point(119, 114);
+            this.desklrcPlayedComboBox.Location = new System.Drawing.Point(119, 96);
             this.desklrcPlayedComboBox.Name = "desklrcPlayedComboBox";
             this.desklrcPlayedComboBox.Size = new System.Drawing.Size(301, 20);
             this.desklrcPlayedComboBox.TabIndex = 8;
@@ -323,7 +323,7 @@
             this.desklrcFontSizeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.desklrcFontSizeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.desklrcFontSizeComboBox.FormattingEnabled = true;
-            this.desklrcFontSizeComboBox.Location = new System.Drawing.Point(119, 56);
+            this.desklrcFontSizeComboBox.Location = new System.Drawing.Point(119, 50);
             this.desklrcFontSizeComboBox.Name = "desklrcFontSizeComboBox";
             this.desklrcFontSizeComboBox.Size = new System.Drawing.Size(121, 20);
             this.desklrcFontSizeComboBox.TabIndex = 10;
@@ -334,7 +334,7 @@
             this.desklrcFontComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.desklrcFontComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.desklrcFontComboBox.FormattingEnabled = true;
-            this.desklrcFontComboBox.Location = new System.Drawing.Point(119, 26);
+            this.desklrcFontComboBox.Location = new System.Drawing.Point(119, 24);
             this.desklrcFontComboBox.Name = "desklrcFontComboBox";
             this.desklrcFontComboBox.Size = new System.Drawing.Size(301, 20);
             this.desklrcFontComboBox.TabIndex = 8;
@@ -357,7 +357,7 @@
             this.playGbox.Controls.Add(this.cycleComboBox);
             this.playGbox.Controls.Add(this.playLabel);
             this.playGbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.playGbox.Location = new System.Drawing.Point(600, 42);
+            this.playGbox.Location = new System.Drawing.Point(600, 41);
             this.playGbox.Name = "playGbox";
             this.playGbox.Size = new System.Drawing.Size(442, 211);
             this.playGbox.TabIndex = 1;
@@ -369,7 +369,7 @@
             this.rfTimeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.rfTimeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rfTimeComboBox.FormattingEnabled = true;
-            this.rfTimeComboBox.Location = new System.Drawing.Point(119, 56);
+            this.rfTimeComboBox.Location = new System.Drawing.Point(119, 49);
             this.rfTimeComboBox.Name = "rfTimeComboBox";
             this.rfTimeComboBox.Size = new System.Drawing.Size(301, 20);
             this.rfTimeComboBox.TabIndex = 6;
@@ -379,7 +379,7 @@
             this.cycleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cycleComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cycleComboBox.FormattingEnabled = true;
-            this.cycleComboBox.Location = new System.Drawing.Point(119, 26);
+            this.cycleComboBox.Location = new System.Drawing.Point(119, 24);
             this.cycleComboBox.Name = "cycleComboBox";
             this.cycleComboBox.Size = new System.Drawing.Size(301, 20);
             this.cycleComboBox.TabIndex = 4;
@@ -454,7 +454,7 @@
             this.formLyricFontStyleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.formLyricFontStyleComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.formLyricFontStyleComboBox.FormattingEnabled = true;
-            this.formLyricFontStyleComboBox.Location = new System.Drawing.Point(299, 56);
+            this.formLyricFontStyleComboBox.Location = new System.Drawing.Point(299, 50);
             this.formLyricFontStyleComboBox.Name = "formLyricFontStyleComboBox";
             this.formLyricFontStyleComboBox.Size = new System.Drawing.Size(121, 20);
             this.formLyricFontStyleComboBox.TabIndex = 16;
@@ -464,7 +464,7 @@
             this.formlrcFontStyleLabel.AutoSize = true;
             this.formlrcFontStyleLabel.BackColor = System.Drawing.Color.Transparent;
             this.formlrcFontStyleLabel.ForeColor = System.Drawing.Color.DarkGreen;
-            this.formlrcFontStyleLabel.Location = new System.Drawing.Point(246, 60);
+            this.formlrcFontStyleLabel.Location = new System.Drawing.Point(246, 54);
             this.formlrcFontStyleLabel.Name = "formlrcFontStyleLabel";
             this.formlrcFontStyleLabel.Size = new System.Drawing.Size(41, 12);
             this.formlrcFontStyleLabel.TabIndex = 15;
@@ -475,7 +475,7 @@
             this.formlrcCurrlineColorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.formlrcCurrlineColorComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.formlrcCurrlineColorComboBox.FormattingEnabled = true;
-            this.formlrcCurrlineColorComboBox.Location = new System.Drawing.Point(119, 142);
+            this.formlrcCurrlineColorComboBox.Location = new System.Drawing.Point(119, 121);
             this.formlrcCurrlineColorComboBox.Name = "formlrcCurrlineColorComboBox";
             this.formlrcCurrlineColorComboBox.Size = new System.Drawing.Size(301, 20);
             this.formlrcCurrlineColorComboBox.TabIndex = 14;
@@ -504,7 +504,7 @@
             this.formlrcFontSizeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.formlrcFontSizeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.formlrcFontSizeComboBox.FormattingEnabled = true;
-            this.formlrcFontSizeComboBox.Location = new System.Drawing.Point(119, 56);
+            this.formlrcFontSizeComboBox.Location = new System.Drawing.Point(119, 50);
             this.formlrcFontSizeComboBox.Name = "formlrcFontSizeComboBox";
             this.formlrcFontSizeComboBox.Size = new System.Drawing.Size(121, 20);
             this.formlrcFontSizeComboBox.TabIndex = 6;
@@ -514,7 +514,7 @@
             this.formlrcColorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.formlrcColorComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.formlrcColorComboBox.FormattingEnabled = true;
-            this.formlrcColorComboBox.Location = new System.Drawing.Point(119, 172);
+            this.formlrcColorComboBox.Location = new System.Drawing.Point(119, 146);
             this.formlrcColorComboBox.Name = "formlrcColorComboBox";
             this.formlrcColorComboBox.Size = new System.Drawing.Size(301, 20);
             this.formlrcColorComboBox.TabIndex = 10;
@@ -524,7 +524,7 @@
             this.formlrcFontComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.formlrcFontComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.formlrcFontComboBox.FormattingEnabled = true;
-            this.formlrcFontComboBox.Location = new System.Drawing.Point(119, 26);
+            this.formlrcFontComboBox.Location = new System.Drawing.Point(119, 24);
             this.formlrcFontComboBox.Name = "formlrcFontComboBox";
             this.formlrcFontComboBox.Size = new System.Drawing.Size(301, 20);
             this.formlrcFontComboBox.TabIndex = 4;
@@ -534,7 +534,7 @@
             this.formlrcPlayedColorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.formlrcPlayedColorComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.formlrcPlayedColorComboBox.FormattingEnabled = true;
-            this.formlrcPlayedColorComboBox.Location = new System.Drawing.Point(119, 114);
+            this.formlrcPlayedColorComboBox.Location = new System.Drawing.Point(119, 96);
             this.formlrcPlayedColorComboBox.Name = "formlrcPlayedColorComboBox";
             this.formlrcPlayedColorComboBox.Size = new System.Drawing.Size(301, 20);
             this.formlrcPlayedColorComboBox.TabIndex = 8;
@@ -590,7 +590,7 @@
             this.autoRunCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.autoRunCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.autoRunCheckBox.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.autoRunCheckBox.Location = new System.Drawing.Point(126, 173);
+            this.autoRunCheckBox.Location = new System.Drawing.Point(126, 148);
             this.autoRunCheckBox.Name = "autoRunCheckBox";
             this.autoRunCheckBox.Size = new System.Drawing.Size(45, 16);
             this.autoRunCheckBox.TabIndex = 8;
@@ -605,7 +605,7 @@
             this.blendableCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.blendableCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.blendableCheckBox.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.blendableCheckBox.Location = new System.Drawing.Point(126, 144);
+            this.blendableCheckBox.Location = new System.Drawing.Point(126, 123);
             this.blendableCheckBox.Name = "blendableCheckBox";
             this.blendableCheckBox.Size = new System.Drawing.Size(45, 16);
             this.blendableCheckBox.TabIndex = 7;
@@ -620,7 +620,7 @@
             this.exitStyleCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.exitStyleCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exitStyleCheckBox.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.exitStyleCheckBox.Location = new System.Drawing.Point(126, 115);
+            this.exitStyleCheckBox.Location = new System.Drawing.Point(126, 99);
             this.exitStyleCheckBox.Name = "exitStyleCheckBox";
             this.exitStyleCheckBox.Size = new System.Drawing.Size(69, 16);
             this.exitStyleCheckBox.TabIndex = 6;
@@ -633,7 +633,7 @@
             this.autoPlayCheckBox.BackColor = System.Drawing.Color.Transparent;
             this.autoPlayCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.autoPlayCheckBox.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.autoPlayCheckBox.Location = new System.Drawing.Point(126, 87);
+            this.autoPlayCheckBox.Location = new System.Drawing.Point(126, 76);
             this.autoPlayCheckBox.Name = "autoPlayCheckBox";
             this.autoPlayCheckBox.Size = new System.Drawing.Size(57, 16);
             this.autoPlayCheckBox.TabIndex = 5;
@@ -645,7 +645,7 @@
             this.themeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.themeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.themeComboBox.FormattingEnabled = true;
-            this.themeComboBox.Location = new System.Drawing.Point(126, 56);
+            this.themeComboBox.Location = new System.Drawing.Point(126, 50);
             this.themeComboBox.Name = "themeComboBox";
             this.themeComboBox.Size = new System.Drawing.Size(296, 20);
             this.themeComboBox.TabIndex = 3;
