@@ -249,7 +249,7 @@ namespace FreshMedia.View.VList
             tsmi.Text = "☆☆☆☆☆☆☆☆☆☆☆☆";
             tsmi.Enabled = false;
             cms.Items.Add(tsmi);
-            cms.Font = new Font("幼圆", 30, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Pixel);
+            cms.Font = new Font("幼圆", 30, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             ContextMenuStripHelper.CenterToWindow(cms, _mc.MainForm);
         }
 

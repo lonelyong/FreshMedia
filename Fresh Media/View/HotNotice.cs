@@ -81,7 +81,7 @@ namespace FreshMedia.View
                 this._label.AutoSize = true;
                 this._label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                 //fm
-                this._f.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+                this._f.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
                 this._f.BackColor = _ctrParent.BackColor;
                 this._f.ClientSize = new System.Drawing.Size(100, 20);
                 this._f.Controls.Add(this._label);

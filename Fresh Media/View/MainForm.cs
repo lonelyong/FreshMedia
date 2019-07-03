@@ -1416,7 +1416,7 @@ namespace FreshMedia.View
         private void muteStateChangedEvent(Player.MuteStateChangedEventArgs e)
         {
             Font f = volumeLabel.Font;
-            f = new Font(f.Name, f.Size, e.MuteState ? FontStyle.Strikeout : FontStyle.Regular, GraphicsUnit.Pixel);
+            f = new Font(f.Name, f.Size, e.MuteState ? FontStyle.Strikeout : FontStyle.Regular, GraphicsUnit.Point);
             volumeLabel.Font = f;
         }
         /// <summary>

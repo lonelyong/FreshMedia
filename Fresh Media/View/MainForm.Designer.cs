@@ -107,8 +107,8 @@ namespace FreshMedia.View
             this.ContentPanel.Controls.Add(this.sleepLabel);
             this.ContentPanel.Controls.Add(this.timeLabel);
             this.ContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ContentPanel.Location = new System.Drawing.Point(3, 33);
-            this.ContentPanel.Size = new System.Drawing.Size(1545, 925);
+            this.ContentPanel.Location = new System.Drawing.Point(3, 27);
+            this.ContentPanel.Size = new System.Drawing.Size(1072, 635);
             this.ContentPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ContentPanel_MouseUp);
             // 
             // controlSplitContainer
@@ -143,7 +143,7 @@ namespace FreshMedia.View
             this.controlSplitContainer.Panel2.Padding = new System.Windows.Forms.Padding(1);
             this.controlSplitContainer.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.controlSplitContainerContentPanel2_Paint);
             this.controlSplitContainer.Panel2MinSize = 141;
-            this.controlSplitContainer.Size = new System.Drawing.Size(1522, 160);
+            this.controlSplitContainer.Size = new System.Drawing.Size(1048, 140);
             this.controlSplitContainer.SplitterDistance = 500;
             this.controlSplitContainer.TabIndex = 75;
             this.controlSplitContainer.SizeChanged += new System.EventHandler(this.controlSplitContainer_SizeChanged);
@@ -154,9 +154,9 @@ namespace FreshMedia.View
             this.aKbpsLabel.BackColor = System.Drawing.Color.Transparent;
             this.aKbpsLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.aKbpsLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.aKbpsLabel.Location = new System.Drawing.Point(177, 68);
+            this.aKbpsLabel.Location = new System.Drawing.Point(177, 61);
             this.aKbpsLabel.Name = "aKbpsLabel";
-            this.aKbpsLabel.Size = new System.Drawing.Size(88, 16);
+            this.aKbpsLabel.Size = new System.Drawing.Size(65, 12);
             this.aKbpsLabel.TabIndex = 62;
             this.aKbpsLabel.Text = "    0 Kbps";
             this.aKbpsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -166,9 +166,9 @@ namespace FreshMedia.View
             this.aLengthLabel.AutoSize = true;
             this.aLengthLabel.BackColor = System.Drawing.Color.Transparent;
             this.aLengthLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.aLengthLabel.Location = new System.Drawing.Point(425, 68);
+            this.aLengthLabel.Location = new System.Drawing.Point(425, 61);
             this.aLengthLabel.Name = "aLengthLabel";
-            this.aLengthLabel.Size = new System.Drawing.Size(72, 16);
+            this.aLengthLabel.Size = new System.Drawing.Size(53, 12);
             this.aLengthLabel.TabIndex = 61;
             this.aLengthLabel.Text = "   00:00";
             this.aLengthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -178,9 +178,9 @@ namespace FreshMedia.View
             this.aIndexLabel.AutoSize = true;
             this.aIndexLabel.BackColor = System.Drawing.Color.Transparent;
             this.aIndexLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.aIndexLabel.Location = new System.Drawing.Point(299, 68);
+            this.aIndexLabel.Location = new System.Drawing.Point(299, 61);
             this.aIndexLabel.Name = "aIndexLabel";
-            this.aIndexLabel.Size = new System.Drawing.Size(80, 16);
+            this.aIndexLabel.Size = new System.Drawing.Size(59, 12);
             this.aIndexLabel.TabIndex = 60;
             this.aIndexLabel.Text = "   0/0   ";
             this.aIndexLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -190,9 +190,9 @@ namespace FreshMedia.View
             this.locbarLabel.BackColor = System.Drawing.Color.Transparent;
             this.locbarLabel.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.locbarLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.locbarLabel.Location = new System.Drawing.Point(12, 92);
+            this.locbarLabel.Location = new System.Drawing.Point(12, 85);
             this.locbarLabel.Name = "locbarLabel";
-            this.locbarLabel.Size = new System.Drawing.Size(300, 20);
+            this.locbarLabel.Size = new System.Drawing.Size(300, 16);
             this.locbarLabel.TabIndex = 2;
             this.locbarLabel.Text = "   ";
             // 
@@ -200,11 +200,11 @@ namespace FreshMedia.View
             // 
             this.aTimeLabel.AutoSize = true;
             this.aTimeLabel.BackColor = System.Drawing.Color.Transparent;
-            this.aTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(134)));
+            this.aTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
             this.aTimeLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.aTimeLabel.Location = new System.Drawing.Point(7, 1);
             this.aTimeLabel.Name = "aTimeLabel";
-            this.aTimeLabel.Size = new System.Drawing.Size(81, 30);
+            this.aTimeLabel.Size = new System.Drawing.Size(87, 31);
             this.aTimeLabel.TabIndex = 59;
             this.aTimeLabel.Text = "00:00";
             this.aTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -213,7 +213,7 @@ namespace FreshMedia.View
             // 
             this.aNameLabel.AutoEllipsis = true;
             this.aNameLabel.BackColor = System.Drawing.Color.Transparent;
-            this.aNameLabel.Font = new System.Drawing.Font("SimSun", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.aNameLabel.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.aNameLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.aNameLabel.Location = new System.Drawing.Point(354, 4);
             this.aNameLabel.Name = "aNameLabel";
@@ -229,7 +229,7 @@ namespace FreshMedia.View
             this.playLastButton.FlatAppearance.BorderSize = 0;
             this.playLastButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playLastButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.playLastButton.Location = new System.Drawing.Point(15, 118);
+            this.playLastButton.Location = new System.Drawing.Point(15, 111);
             this.playLastButton.MinimumSize = new System.Drawing.Size(60, 28);
             this.playLastButton.Name = "playLastButton";
             this.playLastButton.Size = new System.Drawing.Size(60, 28);
@@ -250,7 +250,7 @@ namespace FreshMedia.View
             this.playPauseButton.FlatAppearance.BorderSize = 0;
             this.playPauseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playPauseButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.playPauseButton.Location = new System.Drawing.Point(78, 118);
+            this.playPauseButton.Location = new System.Drawing.Point(78, 111);
             this.playPauseButton.MinimumSize = new System.Drawing.Size(60, 28);
             this.playPauseButton.Name = "playPauseButton";
             this.playPauseButton.Size = new System.Drawing.Size(60, 28);
@@ -270,7 +270,7 @@ namespace FreshMedia.View
             this.playNextButton.FlatAppearance.BorderSize = 0;
             this.playNextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playNextButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.playNextButton.Location = new System.Drawing.Point(147, 118);
+            this.playNextButton.Location = new System.Drawing.Point(147, 111);
             this.playNextButton.MinimumSize = new System.Drawing.Size(60, 28);
             this.playNextButton.Name = "playNextButton";
             this.playNextButton.Size = new System.Drawing.Size(60, 28);
@@ -287,11 +287,11 @@ namespace FreshMedia.View
             // 
             this.volUpLabel.AutoSize = true;
             this.volUpLabel.BackColor = System.Drawing.Color.Transparent;
-            this.volUpLabel.Font = new System.Drawing.Font("SimSun", 28F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.volUpLabel.Font = new System.Drawing.Font("宋体", 20F);
             this.volUpLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.volUpLabel.Location = new System.Drawing.Point(273, 120);
+            this.volUpLabel.Location = new System.Drawing.Point(276, 106);
             this.volUpLabel.Name = "volUpLabel";
-            this.volUpLabel.Size = new System.Drawing.Size(27, 28);
+            this.volUpLabel.Size = new System.Drawing.Size(26, 27);
             this.volUpLabel.TabIndex = 56;
             this.volUpLabel.Text = "+";
             this.volUpLabel.Click += new System.EventHandler(this.volCtlLabels_Click);
@@ -304,11 +304,11 @@ namespace FreshMedia.View
             // 
             this.volDownLabel.AutoSize = true;
             this.volDownLabel.BackColor = System.Drawing.Color.Transparent;
-            this.volDownLabel.Font = new System.Drawing.Font("SimSun", 28F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.volDownLabel.Font = new System.Drawing.Font("宋体", 20F, System.Drawing.FontStyle.Bold);
             this.volDownLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.volDownLabel.Location = new System.Drawing.Point(215, 120);
+            this.volDownLabel.Location = new System.Drawing.Point(215, 106);
             this.volDownLabel.Name = "volDownLabel";
-            this.volDownLabel.Size = new System.Drawing.Size(27, 28);
+            this.volDownLabel.Size = new System.Drawing.Size(27, 27);
             this.volDownLabel.TabIndex = 57;
             this.volDownLabel.Tag = "";
             this.volDownLabel.Text = "-";
@@ -323,9 +323,9 @@ namespace FreshMedia.View
             this.volumeLabel.AutoSize = true;
             this.volumeLabel.BackColor = System.Drawing.Color.Transparent;
             this.volumeLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.volumeLabel.Location = new System.Drawing.Point(241, 124);
+            this.volumeLabel.Location = new System.Drawing.Point(254, 110);
             this.volumeLabel.Name = "volumeLabel";
-            this.volumeLabel.Size = new System.Drawing.Size(24, 16);
+            this.volumeLabel.Size = new System.Drawing.Size(17, 12);
             this.volumeLabel.TabIndex = 58;
             this.volumeLabel.Text = "50";
             this.volumeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -341,7 +341,7 @@ namespace FreshMedia.View
             this.infPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.infPanel.Location = new System.Drawing.Point(1, 1);
             this.infPanel.Name = "infPanel";
-            this.infPanel.Size = new System.Drawing.Size(1016, 158);
+            this.infPanel.Size = new System.Drawing.Size(542, 138);
             this.infPanel.TabIndex = 76;
             // 
             // aheadPicBox
@@ -368,7 +368,7 @@ namespace FreshMedia.View
             this.aInfLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.aInfLabel.Location = new System.Drawing.Point(121, 3);
             this.aInfLabel.Name = "aInfLabel";
-            this.aInfLabel.Size = new System.Drawing.Size(56, 144);
+            this.aInfLabel.Size = new System.Drawing.Size(41, 108);
             this.aInfLabel.TabIndex = 0;
             this.aInfLabel.Text = "标  题\r\n\r\n艺术家\r\n\r\n专  辑\r\n\r\n年  代\r\n\r\n描  述";
             this.aInfLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -395,7 +395,7 @@ namespace FreshMedia.View
             this.listSplitContainer.Panel2.SizeChanged += new System.EventHandler(this.splitContainer1ContentPanel2_SizeChanged);
             this.listSplitContainer.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1ContentPanel2_Paint);
             this.listSplitContainer.Panel2MinSize = 520;
-            this.listSplitContainer.Size = new System.Drawing.Size(1522, 692);
+            this.listSplitContainer.Size = new System.Drawing.Size(1048, 412);
             this.listSplitContainer.SplitterDistance = 200;
             this.listSplitContainer.TabIndex = 74;
             // 
@@ -407,9 +407,9 @@ namespace FreshMedia.View
             this.lb_state.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lb_state.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lb_state.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lb_state.Location = new System.Drawing.Point(1, 675);
+            this.lb_state.Location = new System.Drawing.Point(1, 399);
             this.lb_state.Name = "lb_state";
-            this.lb_state.Size = new System.Drawing.Size(40, 16);
+            this.lb_state.Size = new System.Drawing.Size(29, 12);
             this.lb_state.TabIndex = 56;
             this.lb_state.Text = "状态";
             this.lb_state.UseMnemonic = false;
@@ -436,14 +436,14 @@ namespace FreshMedia.View
             this.tsmi_showCurList,
             this.tsmi_opacity});
             this.cms_main.Name = "contextMenuStrip2";
-            this.cms_main.Size = new System.Drawing.Size(225, 88);
+            this.cms_main.Size = new System.Drawing.Size(173, 70);
             this.cms_main.Opening += new System.ComponentModel.CancelEventHandler(this.cms_main_Opening);
             // 
             // tsmi_fLyric
             // 
             this.tsmi_fLyric.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tsmi_fLyric.Name = "tsmi_fLyric";
-            this.tsmi_fLyric.Size = new System.Drawing.Size(224, 28);
+            this.tsmi_fLyric.Size = new System.Drawing.Size(172, 22);
             this.tsmi_fLyric.Text = "显示窗口歌词";
             this.tsmi_fLyric.Click += new System.EventHandler(this.tsmi_fLyric_Click);
             // 
@@ -451,7 +451,7 @@ namespace FreshMedia.View
             // 
             this.tsmi_showCurList.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tsmi_showCurList.Name = "tsmi_showCurList";
-            this.tsmi_showCurList.Size = new System.Drawing.Size(224, 28);
+            this.tsmi_showCurList.Size = new System.Drawing.Size(172, 22);
             this.tsmi_showCurList.Text = "显示正在播放列表";
             this.tsmi_showCurList.Click += new System.EventHandler(this.tsmi_showPlaying_Click);
             // 
@@ -459,7 +459,7 @@ namespace FreshMedia.View
             // 
             this.tsmi_opacity.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tsmi_opacity.Name = "tsmi_opacity";
-            this.tsmi_opacity.Size = new System.Drawing.Size(224, 28);
+            this.tsmi_opacity.Size = new System.Drawing.Size(172, 22);
             this.tsmi_opacity.Text = "透明度";
             // 
             // mainSplitContainer
@@ -480,8 +480,8 @@ namespace FreshMedia.View
             // 
             this.mainSplitContainer.Panel2.Controls.Add(this.listSplitContainer);
             this.mainSplitContainer.Panel2MinSize = 22;
-            this.mainSplitContainer.Size = new System.Drawing.Size(1522, 856);
-            this.mainSplitContainer.SplitterDistance = 160;
+            this.mainSplitContainer.Size = new System.Drawing.Size(1048, 556);
+            this.mainSplitContainer.SplitterDistance = 140;
             this.mainSplitContainer.TabIndex = 63;
             // 
             // toolTip
@@ -497,7 +497,7 @@ namespace FreshMedia.View
             this.cmPicBox.ErrorImage = null;
             this.cmPicBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.cmPicBox.InitialImage = null;
-            this.cmPicBox.Location = new System.Drawing.Point(219, 897);
+            this.cmPicBox.Location = new System.Drawing.Point(222, 600);
             this.cmPicBox.Name = "cmPicBox";
             this.cmPicBox.Size = new System.Drawing.Size(21, 21);
             this.cmPicBox.TabIndex = 68;
@@ -515,7 +515,7 @@ namespace FreshMedia.View
             this.searchPicBox.ErrorImage = null;
             this.searchPicBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.searchPicBox.InitialImage = null;
-            this.searchPicBox.Location = new System.Drawing.Point(9, 897);
+            this.searchPicBox.Location = new System.Drawing.Point(12, 600);
             this.searchPicBox.Name = "searchPicBox";
             this.searchPicBox.Size = new System.Drawing.Size(21, 21);
             this.searchPicBox.TabIndex = 64;
@@ -532,7 +532,7 @@ namespace FreshMedia.View
             this.locPicBox.ErrorImage = null;
             this.locPicBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.locPicBox.InitialImage = null;
-            this.locPicBox.Location = new System.Drawing.Point(111, 897);
+            this.locPicBox.Location = new System.Drawing.Point(114, 600);
             this.locPicBox.Name = "locPicBox";
             this.locPicBox.Size = new System.Drawing.Size(21, 21);
             this.locPicBox.TabIndex = 70;
@@ -554,7 +554,7 @@ namespace FreshMedia.View
             this.menuStrip.Location = new System.Drawing.Point(11, 1);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(0);
-            this.menuStrip.Size = new System.Drawing.Size(236, 28);
+            this.menuStrip.Size = new System.Drawing.Size(194, 24);
             this.menuStrip.TabIndex = 63;
             // 
             // tsmi_file
@@ -567,7 +567,7 @@ namespace FreshMedia.View
             this.tsmi_search});
             this.tsmi_file.Image = ((System.Drawing.Image)(resources.GetObject("tsmi_file.Image")));
             this.tsmi_file.Name = "tsmi_file";
-            this.tsmi_file.Size = new System.Drawing.Size(78, 28);
+            this.tsmi_file.Size = new System.Drawing.Size(64, 24);
             this.tsmi_file.Text = "文件";
             this.tsmi_file.ToolTipText = "浏览本地音乐文件";
             this.tsmi_file.DropDownOpening += new System.EventHandler(this.tsmi_file_DropDownOpening);
@@ -576,7 +576,7 @@ namespace FreshMedia.View
             // 
             this.tsmi_openFile.Image = ((System.Drawing.Image)(resources.GetObject("tsmi_openFile.Image")));
             this.tsmi_openFile.Name = "tsmi_openFile";
-            this.tsmi_openFile.Size = new System.Drawing.Size(192, 30);
+            this.tsmi_openFile.Size = new System.Drawing.Size(144, 22);
             this.tsmi_openFile.Text = "打开(&O)";
             this.tsmi_openFile.Click += new System.EventHandler(this.tsmi_openFile_Click);
             // 
@@ -584,14 +584,14 @@ namespace FreshMedia.View
             // 
             this.tsmi_history.Image = ((System.Drawing.Image)(resources.GetObject("tsmi_history.Image")));
             this.tsmi_history.Name = "tsmi_history";
-            this.tsmi_history.Size = new System.Drawing.Size(192, 30);
+            this.tsmi_history.Size = new System.Drawing.Size(144, 22);
             this.tsmi_history.Text = "历史(&H)";
             this.tsmi_history.DropDownOpening += new System.EventHandler(this.tsmi_history_DropDownOpening);
             // 
             // tsmi_exit
             // 
             this.tsmi_exit.Name = "tsmi_exit";
-            this.tsmi_exit.Size = new System.Drawing.Size(192, 30);
+            this.tsmi_exit.Size = new System.Drawing.Size(144, 22);
             this.tsmi_exit.Text = "退出(&Q)";
             this.tsmi_exit.Click += new System.EventHandler(this.tsmi_exit_Click);
             // 
@@ -599,7 +599,7 @@ namespace FreshMedia.View
             // 
             this.tsmi_search.Name = "tsmi_search";
             this.tsmi_search.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.tsmi_search.Size = new System.Drawing.Size(192, 30);
+            this.tsmi_search.Size = new System.Drawing.Size(144, 22);
             this.tsmi_search.Text = "查找";
             this.tsmi_search.Visible = false;
             this.tsmi_search.Click += new System.EventHandler(this.tsmi_search_Click);
@@ -615,7 +615,7 @@ namespace FreshMedia.View
             this.tsmi_option.Image = global::FreshMedia.Properties.Resources.setting_32_32;
             this.tsmi_option.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmi_option.Name = "tsmi_option";
-            this.tsmi_option.Size = new System.Drawing.Size(78, 28);
+            this.tsmi_option.Size = new System.Drawing.Size(64, 24);
             this.tsmi_option.Text = "选项";
             this.tsmi_option.DropDownOpening += new System.EventHandler(this.tsmi_option_DropDownOpening);
             // 
@@ -623,14 +623,14 @@ namespace FreshMedia.View
             // 
             this.tsmi_theme.Name = "tsmi_theme";
             this.tsmi_theme.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.tsmi_theme.Size = new System.Drawing.Size(301, 29);
+            this.tsmi_theme.Size = new System.Drawing.Size(219, 25);
             this.tsmi_theme.Text = "主题设置";
             // 
             // tsmi_cm
             // 
             this.tsmi_cm.Name = "tsmi_cm";
             this.tsmi_cm.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.tsmi_cm.Size = new System.Drawing.Size(301, 29);
+            this.tsmi_cm.Size = new System.Drawing.Size(219, 25);
             this.tsmi_cm.Text = "循环模式(&C)";
             this.tsmi_cm.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -640,7 +640,7 @@ namespace FreshMedia.View
             this.tsmi_sleep.Image = ((System.Drawing.Image)(resources.GetObject("tsmi_sleep.Image")));
             this.tsmi_sleep.Name = "tsmi_sleep";
             this.tsmi_sleep.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.tsmi_sleep.Size = new System.Drawing.Size(301, 29);
+            this.tsmi_sleep.Size = new System.Drawing.Size(219, 25);
             this.tsmi_sleep.Text = "Sleeping Model(&S)";
             this.tsmi_sleep.Click += new System.EventHandler(this.tsmi_sleep_Click);
             // 
@@ -650,7 +650,7 @@ namespace FreshMedia.View
             this.tsmi_dLyric.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
             this.tsmi_dLyric.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
             | System.Windows.Forms.Keys.L)));
-            this.tsmi_dLyric.Size = new System.Drawing.Size(301, 29);
+            this.tsmi_dLyric.Size = new System.Drawing.Size(219, 25);
             this.tsmi_dLyric.Text = "打开桌面歌词";
             this.tsmi_dLyric.Click += new System.EventHandler(this.tsmi_dLyric_Click);
             // 
@@ -659,7 +659,7 @@ namespace FreshMedia.View
             this.tsmi_moreSet.Image = ((System.Drawing.Image)(resources.GetObject("tsmi_moreSet.Image")));
             this.tsmi_moreSet.Name = "tsmi_moreSet";
             this.tsmi_moreSet.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.tsmi_moreSet.Size = new System.Drawing.Size(301, 29);
+            this.tsmi_moreSet.Size = new System.Drawing.Size(219, 25);
             this.tsmi_moreSet.Text = "控制面板(&S)";
             this.tsmi_moreSet.Click += new System.EventHandler(this.tsmi_moreSet_Click);
             // 
@@ -670,14 +670,14 @@ namespace FreshMedia.View
             this.tsmi_about});
             this.tsmi_help.Image = ((System.Drawing.Image)(resources.GetObject("tsmi_help.Image")));
             this.tsmi_help.Name = "tsmi_help";
-            this.tsmi_help.Size = new System.Drawing.Size(78, 28);
+            this.tsmi_help.Size = new System.Drawing.Size(64, 24);
             this.tsmi_help.Text = "帮助";
             this.tsmi_help.DropDownOpening += new System.EventHandler(this.tsmi_help_DropDownOpening);
             // 
             // tsmi_userHelp
             // 
             this.tsmi_userHelp.Name = "tsmi_userHelp";
-            this.tsmi_userHelp.Size = new System.Drawing.Size(153, 30);
+            this.tsmi_userHelp.Size = new System.Drawing.Size(184, 26);
             this.tsmi_userHelp.Text = "帮助";
             this.tsmi_userHelp.Click += new System.EventHandler(this.tsmi_userHelp_Click);
             // 
@@ -686,7 +686,7 @@ namespace FreshMedia.View
             this.tsmi_about.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tsmi_about.Image = ((System.Drawing.Image)(resources.GetObject("tsmi_about.Image")));
             this.tsmi_about.Name = "tsmi_about";
-            this.tsmi_about.Size = new System.Drawing.Size(153, 30);
+            this.tsmi_about.Size = new System.Drawing.Size(184, 26);
             this.tsmi_about.Text = "关于(&A)";
             this.tsmi_about.Click += new System.EventHandler(this.tsmi_about_Click);
             // 
@@ -699,7 +699,7 @@ namespace FreshMedia.View
             this.sleepLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.sleepLabel.Location = new System.Drawing.Point(750, 1);
             this.sleepLabel.Name = "sleepLabel";
-            this.sleepLabel.Size = new System.Drawing.Size(16, 16);
+            this.sleepLabel.Size = new System.Drawing.Size(11, 12);
             this.sleepLabel.TabIndex = 62;
             this.sleepLabel.Text = " ";
             this.sleepLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -709,23 +709,22 @@ namespace FreshMedia.View
             // 
             this.timeLabel.AutoSize = true;
             this.timeLabel.BackColor = System.Drawing.Color.Transparent;
-            this.timeLabel.Font = new System.Drawing.Font("SimSun", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.timeLabel.Font = new System.Drawing.Font("宋体", 9F);
             this.timeLabel.ForeColor = System.Drawing.Color.Green;
             this.timeLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.timeLabel.Location = new System.Drawing.Point(833, 1);
             this.timeLabel.Name = "timeLabel";
-            this.timeLabel.Size = new System.Drawing.Size(0, 14);
+            this.timeLabel.Size = new System.Drawing.Size(0, 12);
             this.timeLabel.TabIndex = 3;
             this.timeLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.timeLabel.SizeChanged += new System.EventHandler(this.timeLabel_SizeChanged);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
-            this.ClientSize = new System.Drawing.Size(1551, 961);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.ClientSize = new System.Drawing.Size(1078, 665);
             this.ControlBox = false;
             this.DoubleBuffered = true;
-            this.Font = new System.Drawing.Font("SimSun", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.MinimumSize = new System.Drawing.Size(911, 600);
             this.Name = "MainForm";
             this.Opacity = 0.85D;

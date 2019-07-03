@@ -382,10 +382,10 @@ namespace FreshMedia.View.VSetting
             }
             tabCurrent.BackColor = getControlColor(controlType.tabCurrent, 1);
 
-            pageCurrent.Font = new Font(pageTitleLabel[0].Font.Name, pageTitleLabel[0].Font.Size, FontStyle.Regular, GraphicsUnit.Pixel);
+            pageCurrent.Font = new Font(pageTitleLabel[0].Font.Name, pageTitleLabel[0].Font.Size, FontStyle.Regular, GraphicsUnit.Point);
             pageCurrent.BackColor = getControlColor(controlType.pageCurrent, 0);
             pageCurrent = pageTitleLabel[page];
-            pageCurrent.Font = new Font(pageTitleLabel[0].Font.Name, pageTitleLabel[0].Font.Size, FontStyle.Bold, GraphicsUnit.Pixel);
+            pageCurrent.Font = new Font(pageTitleLabel[0].Font.Name, pageTitleLabel[0].Font.Size, FontStyle.Bold, GraphicsUnit.Point);
             pageCurrent.BackColor = getControlColor(controlType.pageCurrent, 1);
 
             pageCurrent0.BackColor = getControlColor(controlType.pageCurrent0, 0);

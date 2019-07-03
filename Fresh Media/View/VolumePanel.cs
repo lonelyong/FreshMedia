@@ -198,7 +198,7 @@ namespace FreshMedia.View
         private void setMute(bool tf)
         {
             _controller.PlayController.myPlayer.settings.Mute = tf;
-            muteLabel.Font = new Font(muteLabel.Font.Name, muteLabel.Font.Size, tf ? FontStyle.Strikeout : FontStyle.Regular, GraphicsUnit.Pixel);
+            muteLabel.Font = new Font(muteLabel.Font.Name, muteLabel.Font.Size, tf ? FontStyle.Strikeout : FontStyle.Regular, GraphicsUnit.Point);
         }
 
         private void setVolume(byte v)

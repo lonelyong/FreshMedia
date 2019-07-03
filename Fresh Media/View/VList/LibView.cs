@@ -329,7 +329,7 @@ namespace FreshMedia.View.VList
                     cms.Opacity = owner == null ? 1 : owner.Opacity;
                     cms.Renderer = _mc.Theme.MenuRender;
                     cms.ShowImageMargin = false;
-                    cms.Font = new Font(string.Empty, 30, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Pixel);
+                    cms.Font = new Font(string.Empty, 30, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
                     ToolStripMenuItem tsmi = new ToolStripMenuItem();
                     tsmi.Text = "☆☆☆☆☆☆☆☆☆☆☆☆";
                     tsmi.Enabled = false;

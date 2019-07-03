@@ -60,14 +60,14 @@
             this.topLabel.Location = new System.Drawing.Point(0, 39);
             this.topLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.topLabel.Name = "topLabel";
-            this.topLabel.Size = new System.Drawing.Size(1332, 78);
+            this.topLabel.Size = new System.Drawing.Size(907, 50);
             this.topLabel.TabIndex = 0;
             this.topLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cms_setting
             // 
             this.cms_setting.BackColor = System.Drawing.SystemColors.Control;
-            this.cms_setting.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cms_setting.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cms_setting.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.cms_setting.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmsi_lock,
@@ -77,7 +77,7 @@
             this.tsmi_lrcOpacity});
             this.cms_setting.Name = "contextMenuStrip1";
             this.cms_setting.ShowImageMargin = false;
-            this.cms_setting.Size = new System.Drawing.Size(160, 114);
+            this.cms_setting.Size = new System.Drawing.Size(118, 114);
             this.cms_setting.Opening += new System.ComponentModel.CancelEventHandler(this.cms_lrc_Opening);
             // 
             // tmsi_lock
@@ -85,7 +85,7 @@
             this.tmsi_lock.BackColor = System.Drawing.Color.Transparent;
             this.tmsi_lock.ForeColor = System.Drawing.Color.DarkGreen;
             this.tmsi_lock.Name = "tmsi_lock";
-            this.tmsi_lock.Size = new System.Drawing.Size(159, 22);
+            this.tmsi_lock.Size = new System.Drawing.Size(117, 22);
             this.tmsi_lock.Text = "锁定歌词";
             this.tmsi_lock.Click += new System.EventHandler(this.tsmi_lock_Click);
             // 
@@ -94,7 +94,7 @@
             this.tsmi_fontSize.BackColor = System.Drawing.Color.Transparent;
             this.tsmi_fontSize.ForeColor = System.Drawing.Color.DarkGreen;
             this.tsmi_fontSize.Name = "tsmi_fontSize";
-            this.tsmi_fontSize.Size = new System.Drawing.Size(159, 22);
+            this.tsmi_fontSize.Size = new System.Drawing.Size(117, 22);
             this.tsmi_fontSize.Text = "字体大小";
             // 
             // tmsi_moreSet
@@ -102,7 +102,7 @@
             this.tmsi_moreSet.BackColor = System.Drawing.Color.Transparent;
             this.tmsi_moreSet.ForeColor = System.Drawing.Color.DarkGreen;
             this.tmsi_moreSet.Name = "tmsi_moreSet";
-            this.tmsi_moreSet.Size = new System.Drawing.Size(159, 22);
+            this.tmsi_moreSet.Size = new System.Drawing.Size(117, 22);
             this.tmsi_moreSet.Text = "更多设置";
             this.tmsi_moreSet.Click += new System.EventHandler(this.tsmi_moreSet_Click);
             // 
@@ -111,7 +111,7 @@
             this.tmsi_exit.BackColor = System.Drawing.Color.Transparent;
             this.tmsi_exit.ForeColor = System.Drawing.Color.DarkGreen;
             this.tmsi_exit.Name = "tmsi_exit";
-            this.tmsi_exit.Size = new System.Drawing.Size(159, 22);
+            this.tmsi_exit.Size = new System.Drawing.Size(117, 22);
             this.tmsi_exit.Text = "退出桌面歌词";
             this.tmsi_exit.Click += new System.EventHandler(this.tsmi_exit_Click);
             // 
@@ -119,7 +119,7 @@
             // 
             this.tsmi_lrcOpacity.ForeColor = System.Drawing.Color.DarkGreen;
             this.tsmi_lrcOpacity.Name = "tsmi_lrcOpacity";
-            this.tsmi_lrcOpacity.Size = new System.Drawing.Size(159, 22);
+            this.tsmi_lrcOpacity.Size = new System.Drawing.Size(117, 22);
             this.tsmi_lrcOpacity.Text = "歌词透明度";
             // 
             // bottomLabel
@@ -129,10 +129,10 @@
             this.bottomLabel.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.bottomLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.bottomLabel.ForeColor = System.Drawing.Color.DarkCyan;
-            this.bottomLabel.Location = new System.Drawing.Point(0, 129);
+            this.bottomLabel.Location = new System.Drawing.Point(0, 93);
             this.bottomLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.bottomLabel.Name = "bottomLabel";
-            this.bottomLabel.Size = new System.Drawing.Size(1332, 78);
+            this.bottomLabel.Size = new System.Drawing.Size(972, 64);
             this.bottomLabel.TabIndex = 1;
             this.bottomLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -150,10 +150,10 @@
             this.lockButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveBorder;
             this.lockButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lockButton.ForeColor = System.Drawing.Color.White;
-            this.lockButton.Location = new System.Drawing.Point(286, -2);
+            this.lockButton.Location = new System.Drawing.Point(126, 0);
             this.lockButton.Margin = new System.Windows.Forms.Padding(0);
             this.lockButton.Name = "lockButton";
-            this.lockButton.Size = new System.Drawing.Size(93, 33);
+            this.lockButton.Size = new System.Drawing.Size(75, 23);
             this.lockButton.TabIndex = 0;
             this.lockButton.Text = "Lock";
             this.toolTip.SetToolTip(this.lockButton, "锁定或解锁歌词");
@@ -170,10 +170,10 @@
             this.fsDownButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveBorder;
             this.fsDownButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.fsDownButton.ForeColor = System.Drawing.Color.White;
-            this.fsDownButton.Location = new System.Drawing.Point(378, -2);
+            this.fsDownButton.Location = new System.Drawing.Point(218, 0);
             this.fsDownButton.Margin = new System.Windows.Forms.Padding(0);
             this.fsDownButton.Name = "fsDownButton";
-            this.fsDownButton.Size = new System.Drawing.Size(93, 33);
+            this.fsDownButton.Size = new System.Drawing.Size(75, 23);
             this.fsDownButton.TabIndex = 1;
             this.fsDownButton.Text = "A-";
             this.toolTip.SetToolTip(this.fsDownButton, "减小字体");
@@ -190,10 +190,10 @@
             this.fsUpButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveBorder;
             this.fsUpButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.fsUpButton.ForeColor = System.Drawing.Color.White;
-            this.fsUpButton.Location = new System.Drawing.Point(470, -2);
+            this.fsUpButton.Location = new System.Drawing.Point(310, 0);
             this.fsUpButton.Margin = new System.Windows.Forms.Padding(0);
             this.fsUpButton.Name = "fsUpButton";
-            this.fsUpButton.Size = new System.Drawing.Size(93, 33);
+            this.fsUpButton.Size = new System.Drawing.Size(75, 23);
             this.fsUpButton.TabIndex = 2;
             this.fsUpButton.Text = "A+";
             this.toolTip.SetToolTip(this.fsUpButton, "增大字体");
@@ -210,10 +210,10 @@
             this.closeButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveBorder;
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButton.ForeColor = System.Drawing.Color.White;
-            this.closeButton.Location = new System.Drawing.Point(561, -2);
+            this.closeButton.Location = new System.Drawing.Point(401, 0);
             this.closeButton.Margin = new System.Windows.Forms.Padding(0);
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(93, 33);
+            this.closeButton.Size = new System.Drawing.Size(75, 23);
             this.closeButton.TabIndex = 3;
             this.closeButton.Text = "X";
             this.toolTip.SetToolTip(this.closeButton, "退出桌面歌词");
@@ -230,10 +230,10 @@
             this.playLastButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveBorder;
             this.playLastButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playLastButton.ForeColor = System.Drawing.Color.White;
-            this.playLastButton.Location = new System.Drawing.Point(652, -2);
+            this.playLastButton.Location = new System.Drawing.Point(492, 0);
             this.playLastButton.Margin = new System.Windows.Forms.Padding(0);
             this.playLastButton.Name = "playLastButton";
-            this.playLastButton.Size = new System.Drawing.Size(93, 33);
+            this.playLastButton.Size = new System.Drawing.Size(75, 23);
             this.playLastButton.TabIndex = 4;
             this.playLastButton.Tag = "";
             this.playLastButton.Text = "|<";
@@ -251,10 +251,10 @@
             this.pauseButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveBorder;
             this.pauseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pauseButton.ForeColor = System.Drawing.Color.White;
-            this.pauseButton.Location = new System.Drawing.Point(744, -2);
+            this.pauseButton.Location = new System.Drawing.Point(584, 0);
             this.pauseButton.Margin = new System.Windows.Forms.Padding(0);
             this.pauseButton.Name = "pauseButton";
-            this.pauseButton.Size = new System.Drawing.Size(93, 33);
+            this.pauseButton.Size = new System.Drawing.Size(75, 23);
             this.pauseButton.TabIndex = 5;
             this.pauseButton.Tag = "";
             this.pauseButton.Text = ">";
@@ -272,10 +272,10 @@
             this.nextButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveBorder;
             this.nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.nextButton.ForeColor = System.Drawing.Color.White;
-            this.nextButton.Location = new System.Drawing.Point(836, -2);
+            this.nextButton.Location = new System.Drawing.Point(676, 0);
             this.nextButton.Margin = new System.Windows.Forms.Padding(0);
             this.nextButton.Name = "nextButton";
-            this.nextButton.Size = new System.Drawing.Size(93, 33);
+            this.nextButton.Size = new System.Drawing.Size(75, 23);
             this.nextButton.TabIndex = 6;
             this.nextButton.Tag = "";
             this.nextButton.Text = ">|";
@@ -293,10 +293,10 @@
             this.mainformButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveBorder;
             this.mainformButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mainformButton.ForeColor = System.Drawing.Color.White;
-            this.mainformButton.Location = new System.Drawing.Point(927, -2);
+            this.mainformButton.Location = new System.Drawing.Point(773, 0);
             this.mainformButton.Margin = new System.Windows.Forms.Padding(0);
             this.mainformButton.Name = "mainformButton";
-            this.mainformButton.Size = new System.Drawing.Size(93, 33);
+            this.mainformButton.Size = new System.Drawing.Size(75, 23);
             this.mainformButton.TabIndex = 7;
             this.mainformButton.Text = "Open";
             this.toolTip.SetToolTip(this.mainformButton, "打开主界面");
@@ -318,16 +318,15 @@
             this.ctlPanel.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.ctlPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.ctlPanel.Location = new System.Drawing.Point(0, 0);
-            this.ctlPanel.Margin = new System.Windows.Forms.Padding(4);
             this.ctlPanel.Name = "ctlPanel";
-            this.ctlPanel.Size = new System.Drawing.Size(1332, 33);
+            this.ctlPanel.Size = new System.Drawing.Size(972, 23);
             this.ctlPanel.TabIndex = 2;
             this.ctlPanel.MouseLeave += new System.EventHandler(this.bgf_MouseLeave);
             // 
             // DesktopLyricF
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1332, 207);
+            this.ClientSize = new System.Drawing.Size(972, 157);
             this.Controls.Add(this.ctlPanel);
             this.Controls.Add(this.bottomLabel);
             this.Controls.Add(this.topLabel);
