@@ -218,6 +218,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\VolumePanel.cs" />
+    <EmbeddedResource Include="View\FormEx.resx">
+      <DependentUpon>FormEx.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\InfoForm.resx">
       <DependentUpon>InfoForm.cs</DependentUpon>
     </EmbeddedResource>

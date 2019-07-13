@@ -71,18 +71,19 @@
             this.ContentPanel.Controls.Add(this.saveButton);
             this.ContentPanel.Controls.Add(this.menuStrip);
             this.ContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ContentPanel.Location = new System.Drawing.Point(4, 22);
-            this.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.ContentPanel.Size = new System.Drawing.Size(1007, 542);
+            this.ContentPanel.Location = new System.Drawing.Point(5, 34);
+            this.ContentPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ContentPanel.Size = new System.Drawing.Size(1343, 675);
             // 
             // saveButton
             // 
             this.saveButton.BackColor = System.Drawing.Color.Transparent;
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveButton.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.saveButton.Location = new System.Drawing.Point(831, 506);
+            this.saveButton.Location = new System.Drawing.Point(1108, 632);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.Size = new System.Drawing.Size(100, 29);
             this.saveButton.TabIndex = 2;
             this.saveButton.Text = "保存";
             this.saveButton.UseVisualStyleBackColor = false;
@@ -92,9 +93,10 @@
             this.cancelButton.BackColor = System.Drawing.Color.Transparent;
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelButton.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.cancelButton.Location = new System.Drawing.Point(915, 506);
+            this.cancelButton.Location = new System.Drawing.Point(1220, 632);
+            this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.Size = new System.Drawing.Size(100, 29);
             this.cancelButton.TabIndex = 1;
             this.cancelButton.Text = "取消";
             this.cancelButton.UseVisualStyleBackColor = false;
@@ -111,12 +113,14 @@
             this.dgv_time,
             this.dgv_lrc});
             this.editorDataGridView.EnableHeadersVisualStyles = false;
-            this.editorDataGridView.Location = new System.Drawing.Point(14, 32);
+            this.editorDataGridView.Location = new System.Drawing.Point(19, 40);
+            this.editorDataGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.editorDataGridView.MultiSelect = false;
             this.editorDataGridView.Name = "editorDataGridView";
             this.editorDataGridView.RowHeadersVisible = false;
+            this.editorDataGridView.RowHeadersWidth = 51;
             this.editorDataGridView.RowTemplate.Height = 23;
-            this.editorDataGridView.Size = new System.Drawing.Size(986, 466);
+            this.editorDataGridView.Size = new System.Drawing.Size(1315, 582);
             this.editorDataGridView.TabIndex = 3;
             this.editorDataGridView.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.editorDataGridView_CellLeave);
             this.editorDataGridView.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.editorDataGridView_CellMouseDown);
@@ -125,11 +129,13 @@
             // 
             this.dgv_time.FillWeight = 28F;
             this.dgv_time.HeaderText = "时间(00:00.00)";
+            this.dgv_time.MinimumWidth = 6;
             this.dgv_time.Name = "dgv_time";
             // 
             // dgv_lrc
             // 
             this.dgv_lrc.HeaderText = "歌词";
+            this.dgv_lrc.MinimumWidth = 6;
             this.dgv_lrc.Name = "dgv_lrc";
             // 
             // insertButton
@@ -137,9 +143,10 @@
             this.insertButton.BackColor = System.Drawing.Color.Transparent;
             this.insertButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.insertButton.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.insertButton.Location = new System.Drawing.Point(164, 506);
+            this.insertButton.Location = new System.Drawing.Point(219, 632);
+            this.insertButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.insertButton.Name = "insertButton";
-            this.insertButton.Size = new System.Drawing.Size(75, 23);
+            this.insertButton.Size = new System.Drawing.Size(100, 29);
             this.insertButton.TabIndex = 5;
             this.insertButton.Text = "插入行";
             this.insertButton.UseVisualStyleBackColor = false;
@@ -149,9 +156,10 @@
             this.cleanButton.BackColor = System.Drawing.Color.Transparent;
             this.cleanButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cleanButton.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.cleanButton.Location = new System.Drawing.Point(331, 506);
+            this.cleanButton.Location = new System.Drawing.Point(441, 632);
+            this.cleanButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cleanButton.Name = "cleanButton";
-            this.cleanButton.Size = new System.Drawing.Size(75, 23);
+            this.cleanButton.Size = new System.Drawing.Size(100, 29);
             this.cleanButton.TabIndex = 4;
             this.cleanButton.Text = "清空";
             this.cleanButton.UseVisualStyleBackColor = false;
@@ -161,9 +169,10 @@
             this.timeCheckButton.BackColor = System.Drawing.Color.Transparent;
             this.timeCheckButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.timeCheckButton.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.timeCheckButton.Location = new System.Drawing.Point(248, 506);
+            this.timeCheckButton.Location = new System.Drawing.Point(331, 632);
+            this.timeCheckButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.timeCheckButton.Name = "timeCheckButton";
-            this.timeCheckButton.Size = new System.Drawing.Size(75, 23);
+            this.timeCheckButton.Size = new System.Drawing.Size(100, 29);
             this.timeCheckButton.TabIndex = 6;
             this.timeCheckButton.Text = "时间校正";
             this.timeCheckButton.UseVisualStyleBackColor = false;
@@ -173,9 +182,10 @@
             this.delButton.BackColor = System.Drawing.Color.Transparent;
             this.delButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.delButton.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.delButton.Location = new System.Drawing.Point(414, 506);
+            this.delButton.Location = new System.Drawing.Point(552, 632);
+            this.delButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.delButton.Name = "delButton";
-            this.delButton.Size = new System.Drawing.Size(75, 23);
+            this.delButton.Size = new System.Drawing.Size(100, 29);
             this.delButton.TabIndex = 8;
             this.delButton.Text = "移除";
             this.delButton.UseVisualStyleBackColor = false;
@@ -185,9 +195,10 @@
             this.insertCurrentButton.BackColor = System.Drawing.Color.Transparent;
             this.insertCurrentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.insertCurrentButton.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.insertCurrentButton.Location = new System.Drawing.Point(14, 506);
+            this.insertCurrentButton.Location = new System.Drawing.Point(19, 632);
+            this.insertCurrentButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.insertCurrentButton.Name = "insertCurrentButton";
-            this.insertCurrentButton.Size = new System.Drawing.Size(152, 23);
+            this.insertCurrentButton.Size = new System.Drawing.Size(203, 29);
             this.insertCurrentButton.TabIndex = 7;
             this.insertCurrentButton.Text = "插入行(当前播放时间)";
             this.insertCurrentButton.UseVisualStyleBackColor = false;
@@ -201,22 +212,22 @@
             this.tsmi_ms_tidy,
             this.tsmi_ms_check,
             this.tsmi_ms_help});
-            this.menuStrip.Location = new System.Drawing.Point(7, 2);
+            this.menuStrip.Location = new System.Drawing.Point(9, 2);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(164, 25);
+            this.menuStrip.Size = new System.Drawing.Size(199, 28);
             this.menuStrip.TabIndex = 9;
             // 
             // tsmi_ms_tidy
             // 
             this.tsmi_ms_tidy.Name = "tsmi_ms_tidy";
-            this.tsmi_ms_tidy.Size = new System.Drawing.Size(44, 21);
+            this.tsmi_ms_tidy.Size = new System.Drawing.Size(53, 24);
             this.tsmi_ms_tidy.Text = "整理";
             this.tsmi_ms_tidy.Click += new System.EventHandler(this.tsmi_ms_items_Click);
             // 
             // tsmi_ms_check
             // 
             this.tsmi_ms_check.Name = "tsmi_ms_check";
-            this.tsmi_ms_check.Size = new System.Drawing.Size(68, 21);
+            this.tsmi_ms_check.Size = new System.Drawing.Size(83, 24);
             this.tsmi_ms_check.Text = "检查错误";
             this.tsmi_ms_check.Click += new System.EventHandler(this.tsmi_ms_items_Click);
             // 
@@ -225,13 +236,13 @@
             this.tsmi_ms_help.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_ms_help_about});
             this.tsmi_ms_help.Name = "tsmi_ms_help";
-            this.tsmi_ms_help.Size = new System.Drawing.Size(44, 21);
+            this.tsmi_ms_help.Size = new System.Drawing.Size(53, 24);
             this.tsmi_ms_help.Text = "帮助";
             // 
             // tsmi_ms_help_about
             // 
             this.tsmi_ms_help_about.Name = "tsmi_ms_help_about";
-            this.tsmi_ms_help_about.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_ms_help_about.Size = new System.Drawing.Size(122, 26);
             this.tsmi_ms_help_about.Text = "关于";
             this.tsmi_ms_help_about.Click += new System.EventHandler(this.tsmi_ms_items_Click);
             // 
@@ -247,66 +258,67 @@
             this.tsmi_paste,
             this.tsmi_cut});
             this.cms_item.Name = "cms_item";
-            this.cms_item.Size = new System.Drawing.Size(137, 158);
+            this.cms_item.Size = new System.Drawing.Size(154, 172);
             this.cms_item.Opening += new System.ComponentModel.CancelEventHandler(this.cms_item_Opening);
             // 
             // tsmi_copy
             // 
             this.tsmi_copy.Name = "tsmi_copy";
-            this.tsmi_copy.Size = new System.Drawing.Size(136, 22);
+            this.tsmi_copy.Size = new System.Drawing.Size(153, 24);
             this.tsmi_copy.Text = "复制（&C）";
             this.tsmi_copy.Click += new System.EventHandler(this.cms_item_items_Click);
             // 
             // tsmi_moveDown
             // 
             this.tsmi_moveDown.Name = "tsmi_moveDown";
-            this.tsmi_moveDown.Size = new System.Drawing.Size(136, 22);
+            this.tsmi_moveDown.Size = new System.Drawing.Size(153, 24);
             this.tsmi_moveDown.Text = "向下移动";
             this.tsmi_moveDown.Click += new System.EventHandler(this.cms_item_items_Click);
             // 
             // tsmi_moveUp
             // 
             this.tsmi_moveUp.Name = "tsmi_moveUp";
-            this.tsmi_moveUp.Size = new System.Drawing.Size(136, 22);
+            this.tsmi_moveUp.Size = new System.Drawing.Size(153, 24);
             this.tsmi_moveUp.Text = "向上移动";
             this.tsmi_moveUp.Click += new System.EventHandler(this.cms_item_items_Click);
             // 
             // tsmi_clean
             // 
             this.tsmi_clean.Name = "tsmi_clean";
-            this.tsmi_clean.Size = new System.Drawing.Size(136, 22);
+            this.tsmi_clean.Size = new System.Drawing.Size(153, 24);
             this.tsmi_clean.Text = "清空单元格";
             this.tsmi_clean.Click += new System.EventHandler(this.cms_item_items_Click);
             // 
             // tsmi_del
             // 
             this.tsmi_del.Name = "tsmi_del";
-            this.tsmi_del.Size = new System.Drawing.Size(136, 22);
+            this.tsmi_del.Size = new System.Drawing.Size(153, 24);
             this.tsmi_del.Text = "删除行";
             this.tsmi_del.Click += new System.EventHandler(this.cms_item_items_Click);
             // 
             // tsmi_paste
             // 
             this.tsmi_paste.Name = "tsmi_paste";
-            this.tsmi_paste.Size = new System.Drawing.Size(136, 22);
+            this.tsmi_paste.Size = new System.Drawing.Size(153, 24);
             this.tsmi_paste.Text = "粘贴（&V）";
             this.tsmi_paste.Click += new System.EventHandler(this.cms_item_items_Click);
             // 
             // tsmi_cut
             // 
             this.tsmi_cut.Name = "tsmi_cut";
-            this.tsmi_cut.Size = new System.Drawing.Size(136, 22);
+            this.tsmi_cut.Size = new System.Drawing.Size(153, 24);
             this.tsmi_cut.Text = "剪切（&X）";
             this.tsmi_cut.Click += new System.EventHandler(this.cms_item_items_Click);
             // 
             // LyricMakerF
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.ClientSize = new System.Drawing.Size(1015, 568);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.ClientSize = new System.Drawing.Size(1353, 714);
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "LyricMakerF";
             this.Opacity = 0.9D;
+            this.Padding = new System.Windows.Forms.Padding(5, 2, 5, 5);
             this.Text = "歌词编辑器";
             this.Load += new System.EventHandler(this.this_Load);
             this.Controls.SetChildIndex(this.ContentPanel, 0);

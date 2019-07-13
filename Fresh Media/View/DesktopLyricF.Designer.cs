@@ -77,7 +77,7 @@
             this.tsmi_lrcOpacity});
             this.cms_setting.Name = "contextMenuStrip1";
             this.cms_setting.ShowImageMargin = false;
-            this.cms_setting.Size = new System.Drawing.Size(118, 114);
+            this.cms_setting.Size = new System.Drawing.Size(140, 114);
             this.cms_setting.Opening += new System.ComponentModel.CancelEventHandler(this.cms_lrc_Opening);
             // 
             // tmsi_lock
@@ -85,7 +85,7 @@
             this.tmsi_lock.BackColor = System.Drawing.Color.Transparent;
             this.tmsi_lock.ForeColor = System.Drawing.Color.DarkGreen;
             this.tmsi_lock.Name = "tmsi_lock";
-            this.tmsi_lock.Size = new System.Drawing.Size(117, 22);
+            this.tmsi_lock.Size = new System.Drawing.Size(139, 22);
             this.tmsi_lock.Text = "锁定歌词";
             this.tmsi_lock.Click += new System.EventHandler(this.tsmi_lock_Click);
             // 
@@ -94,7 +94,7 @@
             this.tsmi_fontSize.BackColor = System.Drawing.Color.Transparent;
             this.tsmi_fontSize.ForeColor = System.Drawing.Color.DarkGreen;
             this.tsmi_fontSize.Name = "tsmi_fontSize";
-            this.tsmi_fontSize.Size = new System.Drawing.Size(117, 22);
+            this.tsmi_fontSize.Size = new System.Drawing.Size(139, 22);
             this.tsmi_fontSize.Text = "字体大小";
             // 
             // tmsi_moreSet
@@ -102,7 +102,7 @@
             this.tmsi_moreSet.BackColor = System.Drawing.Color.Transparent;
             this.tmsi_moreSet.ForeColor = System.Drawing.Color.DarkGreen;
             this.tmsi_moreSet.Name = "tmsi_moreSet";
-            this.tmsi_moreSet.Size = new System.Drawing.Size(117, 22);
+            this.tmsi_moreSet.Size = new System.Drawing.Size(139, 22);
             this.tmsi_moreSet.Text = "更多设置";
             this.tmsi_moreSet.Click += new System.EventHandler(this.tsmi_moreSet_Click);
             // 
@@ -111,7 +111,7 @@
             this.tmsi_exit.BackColor = System.Drawing.Color.Transparent;
             this.tmsi_exit.ForeColor = System.Drawing.Color.DarkGreen;
             this.tmsi_exit.Name = "tmsi_exit";
-            this.tmsi_exit.Size = new System.Drawing.Size(117, 22);
+            this.tmsi_exit.Size = new System.Drawing.Size(139, 22);
             this.tmsi_exit.Text = "退出桌面歌词";
             this.tmsi_exit.Click += new System.EventHandler(this.tsmi_exit_Click);
             // 
@@ -119,7 +119,7 @@
             // 
             this.tsmi_lrcOpacity.ForeColor = System.Drawing.Color.DarkGreen;
             this.tsmi_lrcOpacity.Name = "tsmi_lrcOpacity";
-            this.tsmi_lrcOpacity.Size = new System.Drawing.Size(117, 22);
+            this.tsmi_lrcOpacity.Size = new System.Drawing.Size(139, 22);
             this.tsmi_lrcOpacity.Text = "歌词透明度";
             // 
             // bottomLabel
@@ -129,7 +129,7 @@
             this.bottomLabel.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.bottomLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.bottomLabel.ForeColor = System.Drawing.Color.DarkCyan;
-            this.bottomLabel.Location = new System.Drawing.Point(0, 93);
+            this.bottomLabel.Location = new System.Drawing.Point(0, 96);
             this.bottomLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.bottomLabel.Name = "bottomLabel";
             this.bottomLabel.Size = new System.Drawing.Size(972, 64);
@@ -326,7 +326,7 @@
             // DesktopLyricF
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(972, 157);
+            this.ClientSize = new System.Drawing.Size(972, 160);
             this.Controls.Add(this.ctlPanel);
             this.Controls.Add(this.bottomLabel);
             this.Controls.Add(this.topLabel);

@@ -101,15 +101,16 @@
             this.ContentPanel.Controls.Add(this.cancelButton);
             this.ContentPanel.Controls.Add(this.applyButton);
             this.ContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ContentPanel.Location = new System.Drawing.Point(3, 26);
-            this.ContentPanel.Size = new System.Drawing.Size(1620, 643);
+            this.ContentPanel.Location = new System.Drawing.Point(4, 32);
+            this.ContentPanel.Size = new System.Drawing.Size(1934, 807);
             // 
             // tabLyricLabel
             // 
             this.tabLyricLabel.BackColor = System.Drawing.Color.Transparent;
-            this.tabLyricLabel.Location = new System.Drawing.Point(324, 12);
+            this.tabLyricLabel.Location = new System.Drawing.Point(432, 15);
+            this.tabLyricLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.tabLyricLabel.Name = "tabLyricLabel";
-            this.tabLyricLabel.Size = new System.Drawing.Size(90, 18);
+            this.tabLyricLabel.Size = new System.Drawing.Size(120, 22);
             this.tabLyricLabel.TabIndex = 2;
             this.tabLyricLabel.Text = "歌词设置";
             this.tabLyricLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -127,9 +128,11 @@
             this.sleepGbox.Controls.Add(this.sleepCheckBox);
             this.sleepGbox.Controls.Add(this.sleepLabel);
             this.sleepGbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.sleepGbox.Location = new System.Drawing.Point(1048, 42);
+            this.sleepGbox.Location = new System.Drawing.Point(1397, 52);
+            this.sleepGbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.sleepGbox.Name = "sleepGbox";
-            this.sleepGbox.Size = new System.Drawing.Size(560, 211);
+            this.sleepGbox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sleepGbox.Size = new System.Drawing.Size(747, 264);
             this.sleepGbox.TabIndex = 1;
             this.sleepGbox.TabStop = false;
             this.sleepGbox.Text = "睡眠模式";
@@ -139,9 +142,10 @@
             // 
             this.sleepLefttimeLabel.AutoSize = true;
             this.sleepLefttimeLabel.ForeColor = System.Drawing.Color.Red;
-            this.sleepLefttimeLabel.Location = new System.Drawing.Point(198, 30);
+            this.sleepLefttimeLabel.Location = new System.Drawing.Point(264, 38);
+            this.sleepLefttimeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.sleepLefttimeLabel.Name = "sleepLefttimeLabel";
-            this.sleepLefttimeLabel.Size = new System.Drawing.Size(0, 12);
+            this.sleepLefttimeLabel.Size = new System.Drawing.Size(0, 15);
             this.sleepLefttimeLabel.TabIndex = 8;
             // 
             // shutdownCheckBox
@@ -149,9 +153,10 @@
             this.shutdownCheckBox.AutoSize = true;
             this.shutdownCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.shutdownCheckBox.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.shutdownCheckBox.Location = new System.Drawing.Point(126, 76);
+            this.shutdownCheckBox.Location = new System.Drawing.Point(168, 95);
+            this.shutdownCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.shutdownCheckBox.Name = "shutdownCheckBox";
-            this.shutdownCheckBox.Size = new System.Drawing.Size(57, 16);
+            this.shutdownCheckBox.Size = new System.Drawing.Size(70, 19);
             this.shutdownCheckBox.TabIndex = 7;
             this.shutdownCheckBox.Text = "不关机";
             this.shutdownCheckBox.UseVisualStyleBackColor = true;
@@ -160,9 +165,10 @@
             // 
             this.sleepTimeButton.BackColor = System.Drawing.Color.Transparent;
             this.sleepTimeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.sleepTimeButton.Location = new System.Drawing.Point(457, 52);
+            this.sleepTimeButton.Location = new System.Drawing.Point(609, 65);
+            this.sleepTimeButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.sleepTimeButton.Name = "sleepTimeButton";
-            this.sleepTimeButton.Size = new System.Drawing.Size(75, 23);
+            this.sleepTimeButton.Size = new System.Drawing.Size(100, 29);
             this.sleepTimeButton.TabIndex = 5;
             this.sleepTimeButton.Text = "自定义";
             this.sleepTimeButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -175,10 +181,11 @@
             this.sleepTimeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sleepTimeComboBox.ForeColor = System.Drawing.Color.OrangeRed;
             this.sleepTimeComboBox.FormattingEnabled = true;
-            this.sleepTimeComboBox.ItemHeight = 12;
-            this.sleepTimeComboBox.Location = new System.Drawing.Point(126, 49);
+            this.sleepTimeComboBox.ItemHeight = 15;
+            this.sleepTimeComboBox.Location = new System.Drawing.Point(168, 61);
+            this.sleepTimeComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.sleepTimeComboBox.Name = "sleepTimeComboBox";
-            this.sleepTimeComboBox.Size = new System.Drawing.Size(296, 20);
+            this.sleepTimeComboBox.Size = new System.Drawing.Size(393, 23);
             this.sleepTimeComboBox.TabIndex = 4;
             // 
             // sleepCheckBox
@@ -186,9 +193,10 @@
             this.sleepCheckBox.AutoSize = true;
             this.sleepCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sleepCheckBox.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.sleepCheckBox.Location = new System.Drawing.Point(126, 28);
+            this.sleepCheckBox.Location = new System.Drawing.Point(168, 35);
+            this.sleepCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.sleepCheckBox.Name = "sleepCheckBox";
-            this.sleepCheckBox.Size = new System.Drawing.Size(57, 16);
+            this.sleepCheckBox.Size = new System.Drawing.Size(70, 19);
             this.sleepCheckBox.TabIndex = 2;
             this.sleepCheckBox.Text = "未激活";
             this.sleepCheckBox.UseVisualStyleBackColor = true;
@@ -197,9 +205,10 @@
             // 
             this.sleepLabel.AutoSize = true;
             this.sleepLabel.ForeColor = System.Drawing.Color.DarkGreen;
-            this.sleepLabel.Location = new System.Drawing.Point(6, 29);
+            this.sleepLabel.Location = new System.Drawing.Point(8, 36);
+            this.sleepLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.sleepLabel.Name = "sleepLabel";
-            this.sleepLabel.Size = new System.Drawing.Size(89, 60);
+            this.sleepLabel.Size = new System.Drawing.Size(112, 75);
             this.sleepLabel.TabIndex = 0;
             this.sleepLabel.Text = "激活睡眠模式：\r\n\r\n停止时间：\r\n\r\n是否关机：";
             this.sleepLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -208,9 +217,11 @@
             // 
             this.hotkeyGbox.BackColor = System.Drawing.Color.Transparent;
             this.hotkeyGbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.hotkeyGbox.Location = new System.Drawing.Point(1401, 262);
+            this.hotkeyGbox.Location = new System.Drawing.Point(1868, 328);
+            this.hotkeyGbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.hotkeyGbox.Name = "hotkeyGbox";
-            this.hotkeyGbox.Size = new System.Drawing.Size(207, 235);
+            this.hotkeyGbox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.hotkeyGbox.Size = new System.Drawing.Size(276, 294);
             this.hotkeyGbox.TabIndex = 16;
             this.hotkeyGbox.TabStop = false;
             this.hotkeyGbox.Text = "全局热键";
@@ -230,9 +241,11 @@
             this.desklrcGbox.Controls.Add(this.desklrcFontComboBox);
             this.desklrcGbox.Controls.Add(this.desklrcLabel);
             this.desklrcGbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.desklrcGbox.Location = new System.Drawing.Point(770, 262);
+            this.desklrcGbox.Location = new System.Drawing.Point(1027, 328);
+            this.desklrcGbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.desklrcGbox.Name = "desklrcGbox";
-            this.desklrcGbox.Size = new System.Drawing.Size(626, 235);
+            this.desklrcGbox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.desklrcGbox.Size = new System.Drawing.Size(835, 294);
             this.desklrcGbox.TabIndex = 14;
             this.desklrcGbox.TabStop = false;
             this.desklrcGbox.Text = "桌面歌词";
@@ -243,18 +256,20 @@
             this.desklrcFontStyleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.desklrcFontStyleComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.desklrcFontStyleComboBox.FormattingEnabled = true;
-            this.desklrcFontStyleComboBox.Location = new System.Drawing.Point(299, 50);
+            this.desklrcFontStyleComboBox.Location = new System.Drawing.Point(399, 62);
+            this.desklrcFontStyleComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.desklrcFontStyleComboBox.Name = "desklrcFontStyleComboBox";
-            this.desklrcFontStyleComboBox.Size = new System.Drawing.Size(121, 20);
+            this.desklrcFontStyleComboBox.Size = new System.Drawing.Size(160, 23);
             this.desklrcFontStyleComboBox.TabIndex = 18;
             // 
             // desklrcFontStyleLabel
             // 
             this.desklrcFontStyleLabel.AutoSize = true;
             this.desklrcFontStyleLabel.ForeColor = System.Drawing.Color.DarkGreen;
-            this.desklrcFontStyleLabel.Location = new System.Drawing.Point(246, 54);
+            this.desklrcFontStyleLabel.Location = new System.Drawing.Point(328, 68);
+            this.desklrcFontStyleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.desklrcFontStyleLabel.Name = "desklrcFontStyleLabel";
-            this.desklrcFontStyleLabel.Size = new System.Drawing.Size(41, 12);
+            this.desklrcFontStyleLabel.Size = new System.Drawing.Size(52, 15);
             this.desklrcFontStyleLabel.TabIndex = 17;
             this.desklrcFontStyleLabel.Text = "样式：";
             // 
@@ -265,9 +280,10 @@
             this.desklrcVisibleCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.desklrcVisibleCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.desklrcVisibleCheckBox.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.desklrcVisibleCheckBox.Location = new System.Drawing.Point(119, 148);
+            this.desklrcVisibleCheckBox.Location = new System.Drawing.Point(159, 185);
+            this.desklrcVisibleCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.desklrcVisibleCheckBox.Name = "desklrcVisibleCheckBox";
-            this.desklrcVisibleCheckBox.Size = new System.Drawing.Size(45, 16);
+            this.desklrcVisibleCheckBox.Size = new System.Drawing.Size(55, 19);
             this.desklrcVisibleCheckBox.TabIndex = 14;
             this.desklrcVisibleCheckBox.Text = "启用";
             this.desklrcVisibleCheckBox.UseVisualStyleBackColor = true;
@@ -278,18 +294,20 @@
             this.desklrcColorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.desklrcColorComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.desklrcColorComboBox.FormattingEnabled = true;
-            this.desklrcColorComboBox.Location = new System.Drawing.Point(119, 122);
+            this.desklrcColorComboBox.Location = new System.Drawing.Point(159, 152);
+            this.desklrcColorComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.desklrcColorComboBox.Name = "desklrcColorComboBox";
-            this.desklrcColorComboBox.Size = new System.Drawing.Size(301, 20);
+            this.desklrcColorComboBox.Size = new System.Drawing.Size(400, 23);
             this.desklrcColorComboBox.TabIndex = 10;
             // 
             // desklrcPreviewLabel
             // 
             this.desklrcPreviewLabel.BackColor = System.Drawing.Color.Transparent;
             this.desklrcPreviewLabel.Cursor = System.Windows.Forms.Cursors.Default;
-            this.desklrcPreviewLabel.Location = new System.Drawing.Point(434, 142);
+            this.desklrcPreviewLabel.Location = new System.Drawing.Point(579, 178);
+            this.desklrcPreviewLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.desklrcPreviewLabel.Name = "desklrcPreviewLabel";
-            this.desklrcPreviewLabel.Size = new System.Drawing.Size(171, 51);
+            this.desklrcPreviewLabel.Size = new System.Drawing.Size(228, 64);
             this.desklrcPreviewLabel.TabIndex = 13;
             this.desklrcPreviewLabel.Text = "非播放行";
             this.desklrcPreviewLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -298,9 +316,10 @@
             // 
             this.desklrcCurrentPreviewLabel.BackColor = System.Drawing.Color.Transparent;
             this.desklrcCurrentPreviewLabel.Cursor = System.Windows.Forms.Cursors.Default;
-            this.desklrcCurrentPreviewLabel.Location = new System.Drawing.Point(434, 72);
+            this.desklrcCurrentPreviewLabel.Location = new System.Drawing.Point(579, 90);
+            this.desklrcCurrentPreviewLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.desklrcCurrentPreviewLabel.Name = "desklrcCurrentPreviewLabel";
-            this.desklrcCurrentPreviewLabel.Size = new System.Drawing.Size(171, 56);
+            this.desklrcCurrentPreviewLabel.Size = new System.Drawing.Size(228, 70);
             this.desklrcCurrentPreviewLabel.TabIndex = 12;
             this.desklrcCurrentPreviewLabel.Tag = "播放行";
             this.desklrcCurrentPreviewLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -312,9 +331,10 @@
             this.desklrcPlayedComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.desklrcPlayedComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.desklrcPlayedComboBox.FormattingEnabled = true;
-            this.desklrcPlayedComboBox.Location = new System.Drawing.Point(119, 96);
+            this.desklrcPlayedComboBox.Location = new System.Drawing.Point(159, 120);
+            this.desklrcPlayedComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.desklrcPlayedComboBox.Name = "desklrcPlayedComboBox";
-            this.desklrcPlayedComboBox.Size = new System.Drawing.Size(301, 20);
+            this.desklrcPlayedComboBox.Size = new System.Drawing.Size(400, 23);
             this.desklrcPlayedComboBox.TabIndex = 8;
             // 
             // desklrcFontSizeComboBox
@@ -323,9 +343,10 @@
             this.desklrcFontSizeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.desklrcFontSizeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.desklrcFontSizeComboBox.FormattingEnabled = true;
-            this.desklrcFontSizeComboBox.Location = new System.Drawing.Point(119, 50);
+            this.desklrcFontSizeComboBox.Location = new System.Drawing.Point(159, 62);
+            this.desklrcFontSizeComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.desklrcFontSizeComboBox.Name = "desklrcFontSizeComboBox";
-            this.desklrcFontSizeComboBox.Size = new System.Drawing.Size(121, 20);
+            this.desklrcFontSizeComboBox.Size = new System.Drawing.Size(160, 23);
             this.desklrcFontSizeComboBox.TabIndex = 10;
             // 
             // desklrcFontComboBox
@@ -334,18 +355,20 @@
             this.desklrcFontComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.desklrcFontComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.desklrcFontComboBox.FormattingEnabled = true;
-            this.desklrcFontComboBox.Location = new System.Drawing.Point(119, 24);
+            this.desklrcFontComboBox.Location = new System.Drawing.Point(159, 30);
+            this.desklrcFontComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.desklrcFontComboBox.Name = "desklrcFontComboBox";
-            this.desklrcFontComboBox.Size = new System.Drawing.Size(301, 20);
+            this.desklrcFontComboBox.Size = new System.Drawing.Size(400, 23);
             this.desklrcFontComboBox.TabIndex = 8;
             // 
             // desklrcLabel
             // 
             this.desklrcLabel.AutoSize = true;
             this.desklrcLabel.ForeColor = System.Drawing.Color.DarkGreen;
-            this.desklrcLabel.Location = new System.Drawing.Point(33, 29);
+            this.desklrcLabel.Location = new System.Drawing.Point(44, 36);
+            this.desklrcLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.desklrcLabel.Name = "desklrcLabel";
-            this.desklrcLabel.Size = new System.Drawing.Size(71, 132);
+            this.desklrcLabel.Size = new System.Drawing.Size(92, 165);
             this.desklrcLabel.TabIndex = 7;
             this.desklrcLabel.Text = " 字    体：\r\n\r\n字体大小：\r\n\r\n\r\n\r\n已 播 放：\r\n\r\n未 播 放：\r\n\r\n桌面歌词：";
             this.desklrcLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -357,9 +380,11 @@
             this.playGbox.Controls.Add(this.cycleComboBox);
             this.playGbox.Controls.Add(this.playLabel);
             this.playGbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.playGbox.Location = new System.Drawing.Point(600, 41);
+            this.playGbox.Location = new System.Drawing.Point(800, 51);
+            this.playGbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.playGbox.Name = "playGbox";
-            this.playGbox.Size = new System.Drawing.Size(442, 211);
+            this.playGbox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.playGbox.Size = new System.Drawing.Size(589, 264);
             this.playGbox.TabIndex = 1;
             this.playGbox.TabStop = false;
             this.playGbox.Text = "播放设置";
@@ -369,9 +394,10 @@
             this.rfTimeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.rfTimeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rfTimeComboBox.FormattingEnabled = true;
-            this.rfTimeComboBox.Location = new System.Drawing.Point(119, 49);
+            this.rfTimeComboBox.Location = new System.Drawing.Point(159, 61);
+            this.rfTimeComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rfTimeComboBox.Name = "rfTimeComboBox";
-            this.rfTimeComboBox.Size = new System.Drawing.Size(301, 20);
+            this.rfTimeComboBox.Size = new System.Drawing.Size(400, 23);
             this.rfTimeComboBox.TabIndex = 6;
             // 
             // cycleComboBox
@@ -379,17 +405,19 @@
             this.cycleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cycleComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cycleComboBox.FormattingEnabled = true;
-            this.cycleComboBox.Location = new System.Drawing.Point(119, 24);
+            this.cycleComboBox.Location = new System.Drawing.Point(159, 30);
+            this.cycleComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cycleComboBox.Name = "cycleComboBox";
-            this.cycleComboBox.Size = new System.Drawing.Size(301, 20);
+            this.cycleComboBox.Size = new System.Drawing.Size(400, 23);
             this.cycleComboBox.TabIndex = 4;
             // 
             // playLabel
             // 
             this.playLabel.AutoSize = true;
-            this.playLabel.Location = new System.Drawing.Point(33, 29);
+            this.playLabel.Location = new System.Drawing.Point(44, 36);
+            this.playLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.playLabel.Name = "playLabel";
-            this.playLabel.Size = new System.Drawing.Size(65, 36);
+            this.playLabel.Size = new System.Drawing.Size(82, 45);
             this.playLabel.TabIndex = 0;
             this.playLabel.Text = "循环模式：\r\n\r\nRF(ms)：";
             this.playLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -397,9 +425,10 @@
             // tabPlayLabel
             // 
             this.tabPlayLabel.BackColor = System.Drawing.Color.Transparent;
-            this.tabPlayLabel.Location = new System.Drawing.Point(223, 12);
+            this.tabPlayLabel.Location = new System.Drawing.Point(297, 15);
+            this.tabPlayLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.tabPlayLabel.Name = "tabPlayLabel";
-            this.tabPlayLabel.Size = new System.Drawing.Size(90, 18);
+            this.tabPlayLabel.Size = new System.Drawing.Size(120, 22);
             this.tabPlayLabel.TabIndex = 1;
             this.tabPlayLabel.Text = "播放设置";
             this.tabPlayLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -411,16 +440,18 @@
             // 
             this.pagePanel.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pagePanel.Location = new System.Drawing.Point(0, 0);
+            this.pagePanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pagePanel.Name = "pagePanel";
-            this.pagePanel.Size = new System.Drawing.Size(120, 634);
+            this.pagePanel.Size = new System.Drawing.Size(160, 792);
             this.pagePanel.TabIndex = 0;
             // 
             // tabGeneralLabel
             // 
             this.tabGeneralLabel.BackColor = System.Drawing.Color.Transparent;
-            this.tabGeneralLabel.Location = new System.Drawing.Point(126, 12);
+            this.tabGeneralLabel.Location = new System.Drawing.Point(168, 15);
+            this.tabGeneralLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.tabGeneralLabel.Name = "tabGeneralLabel";
-            this.tabGeneralLabel.Size = new System.Drawing.Size(90, 18);
+            this.tabGeneralLabel.Size = new System.Drawing.Size(120, 22);
             this.tabGeneralLabel.TabIndex = 0;
             this.tabGeneralLabel.Text = "常规设置";
             this.tabGeneralLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -442,9 +473,11 @@
             this.formlrcGbox.Controls.Add(this.formlrcPlayedColorComboBox);
             this.formlrcGbox.Controls.Add(this.formlrcLabel);
             this.formlrcGbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.formlrcGbox.Location = new System.Drawing.Point(138, 262);
+            this.formlrcGbox.Location = new System.Drawing.Point(184, 328);
+            this.formlrcGbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.formlrcGbox.Name = "formlrcGbox";
-            this.formlrcGbox.Size = new System.Drawing.Size(626, 235);
+            this.formlrcGbox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.formlrcGbox.Size = new System.Drawing.Size(835, 294);
             this.formlrcGbox.TabIndex = 0;
             this.formlrcGbox.TabStop = false;
             this.formlrcGbox.Text = "窗口歌词";
@@ -454,9 +487,10 @@
             this.formLyricFontStyleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.formLyricFontStyleComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.formLyricFontStyleComboBox.FormattingEnabled = true;
-            this.formLyricFontStyleComboBox.Location = new System.Drawing.Point(299, 50);
+            this.formLyricFontStyleComboBox.Location = new System.Drawing.Point(399, 62);
+            this.formLyricFontStyleComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.formLyricFontStyleComboBox.Name = "formLyricFontStyleComboBox";
-            this.formLyricFontStyleComboBox.Size = new System.Drawing.Size(121, 20);
+            this.formLyricFontStyleComboBox.Size = new System.Drawing.Size(160, 23);
             this.formLyricFontStyleComboBox.TabIndex = 16;
             // 
             // formlrcFontStyleLabel
@@ -464,9 +498,10 @@
             this.formlrcFontStyleLabel.AutoSize = true;
             this.formlrcFontStyleLabel.BackColor = System.Drawing.Color.Transparent;
             this.formlrcFontStyleLabel.ForeColor = System.Drawing.Color.DarkGreen;
-            this.formlrcFontStyleLabel.Location = new System.Drawing.Point(246, 54);
+            this.formlrcFontStyleLabel.Location = new System.Drawing.Point(328, 68);
+            this.formlrcFontStyleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.formlrcFontStyleLabel.Name = "formlrcFontStyleLabel";
-            this.formlrcFontStyleLabel.Size = new System.Drawing.Size(41, 12);
+            this.formlrcFontStyleLabel.Size = new System.Drawing.Size(52, 15);
             this.formlrcFontStyleLabel.TabIndex = 15;
             this.formlrcFontStyleLabel.Text = "样式：";
             // 
@@ -475,16 +510,18 @@
             this.formlrcCurrlineColorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.formlrcCurrlineColorComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.formlrcCurrlineColorComboBox.FormattingEnabled = true;
-            this.formlrcCurrlineColorComboBox.Location = new System.Drawing.Point(119, 121);
+            this.formlrcCurrlineColorComboBox.Location = new System.Drawing.Point(159, 151);
+            this.formlrcCurrlineColorComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.formlrcCurrlineColorComboBox.Name = "formlrcCurrlineColorComboBox";
-            this.formlrcCurrlineColorComboBox.Size = new System.Drawing.Size(301, 20);
+            this.formlrcCurrlineColorComboBox.Size = new System.Drawing.Size(400, 23);
             this.formlrcCurrlineColorComboBox.TabIndex = 14;
             // 
             // formlrcCurrentPreviewLabel
             // 
-            this.formlrcCurrentPreviewLabel.Location = new System.Drawing.Point(434, 72);
+            this.formlrcCurrentPreviewLabel.Location = new System.Drawing.Point(579, 90);
+            this.formlrcCurrentPreviewLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.formlrcCurrentPreviewLabel.Name = "formlrcCurrentPreviewLabel";
-            this.formlrcCurrentPreviewLabel.Size = new System.Drawing.Size(171, 57);
+            this.formlrcCurrentPreviewLabel.Size = new System.Drawing.Size(228, 71);
             this.formlrcCurrentPreviewLabel.TabIndex = 11;
             this.formlrcCurrentPreviewLabel.Tag = "播放行";
             this.formlrcCurrentPreviewLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -492,9 +529,10 @@
             // 
             // formlrcPreviewLabel
             // 
-            this.formlrcPreviewLabel.Location = new System.Drawing.Point(434, 142);
+            this.formlrcPreviewLabel.Location = new System.Drawing.Point(579, 178);
+            this.formlrcPreviewLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.formlrcPreviewLabel.Name = "formlrcPreviewLabel";
-            this.formlrcPreviewLabel.Size = new System.Drawing.Size(171, 57);
+            this.formlrcPreviewLabel.Size = new System.Drawing.Size(228, 71);
             this.formlrcPreviewLabel.TabIndex = 10;
             this.formlrcPreviewLabel.Text = "非播放行";
             this.formlrcPreviewLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -504,9 +542,10 @@
             this.formlrcFontSizeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.formlrcFontSizeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.formlrcFontSizeComboBox.FormattingEnabled = true;
-            this.formlrcFontSizeComboBox.Location = new System.Drawing.Point(119, 50);
+            this.formlrcFontSizeComboBox.Location = new System.Drawing.Point(159, 62);
+            this.formlrcFontSizeComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.formlrcFontSizeComboBox.Name = "formlrcFontSizeComboBox";
-            this.formlrcFontSizeComboBox.Size = new System.Drawing.Size(121, 20);
+            this.formlrcFontSizeComboBox.Size = new System.Drawing.Size(160, 23);
             this.formlrcFontSizeComboBox.TabIndex = 6;
             // 
             // formlrcColorComboBox
@@ -514,9 +553,10 @@
             this.formlrcColorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.formlrcColorComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.formlrcColorComboBox.FormattingEnabled = true;
-            this.formlrcColorComboBox.Location = new System.Drawing.Point(119, 146);
+            this.formlrcColorComboBox.Location = new System.Drawing.Point(159, 182);
+            this.formlrcColorComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.formlrcColorComboBox.Name = "formlrcColorComboBox";
-            this.formlrcColorComboBox.Size = new System.Drawing.Size(301, 20);
+            this.formlrcColorComboBox.Size = new System.Drawing.Size(400, 23);
             this.formlrcColorComboBox.TabIndex = 10;
             // 
             // formlrcFontComboBox
@@ -524,9 +564,10 @@
             this.formlrcFontComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.formlrcFontComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.formlrcFontComboBox.FormattingEnabled = true;
-            this.formlrcFontComboBox.Location = new System.Drawing.Point(119, 24);
+            this.formlrcFontComboBox.Location = new System.Drawing.Point(159, 30);
+            this.formlrcFontComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.formlrcFontComboBox.Name = "formlrcFontComboBox";
-            this.formlrcFontComboBox.Size = new System.Drawing.Size(301, 20);
+            this.formlrcFontComboBox.Size = new System.Drawing.Size(400, 23);
             this.formlrcFontComboBox.TabIndex = 4;
             // 
             // formlrcPlayedColorComboBox
@@ -534,18 +575,20 @@
             this.formlrcPlayedColorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.formlrcPlayedColorComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.formlrcPlayedColorComboBox.FormattingEnabled = true;
-            this.formlrcPlayedColorComboBox.Location = new System.Drawing.Point(119, 96);
+            this.formlrcPlayedColorComboBox.Location = new System.Drawing.Point(159, 120);
+            this.formlrcPlayedColorComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.formlrcPlayedColorComboBox.Name = "formlrcPlayedColorComboBox";
-            this.formlrcPlayedColorComboBox.Size = new System.Drawing.Size(301, 20);
+            this.formlrcPlayedColorComboBox.Size = new System.Drawing.Size(400, 23);
             this.formlrcPlayedColorComboBox.TabIndex = 8;
             // 
             // formlrcLabel
             // 
             this.formlrcLabel.AutoSize = true;
             this.formlrcLabel.ForeColor = System.Drawing.Color.DarkGreen;
-            this.formlrcLabel.Location = new System.Drawing.Point(33, 29);
+            this.formlrcLabel.Location = new System.Drawing.Point(44, 36);
+            this.formlrcLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.formlrcLabel.Name = "formlrcLabel";
-            this.formlrcLabel.Size = new System.Drawing.Size(65, 132);
+            this.formlrcLabel.Size = new System.Drawing.Size(83, 165);
             this.formlrcLabel.TabIndex = 0;
             this.formlrcLabel.Text = " 字体：\r\n\r\n字体大小：\r\n\r\n\r\n\r\n已 播 放：\r\n\r\n播 放 行：\r\n\r\n未 播 放：";
             this.formlrcLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -555,9 +598,10 @@
             this.okButton.BackColor = System.Drawing.Color.Transparent;
             this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.okButton.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.okButton.Location = new System.Drawing.Point(1367, 600);
+            this.okButton.Location = new System.Drawing.Point(1823, 750);
+            this.okButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.Size = new System.Drawing.Size(100, 29);
             this.okButton.TabIndex = 0;
             this.okButton.Text = "确定";
             this.okButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -575,9 +619,11 @@
             this.startGbox.Controls.Add(this.startBoxCheckBox);
             this.startGbox.Controls.Add(this.norLabel);
             this.startGbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.startGbox.Location = new System.Drawing.Point(138, 42);
+            this.startGbox.Location = new System.Drawing.Point(184, 52);
+            this.startGbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.startGbox.Name = "startGbox";
-            this.startGbox.Size = new System.Drawing.Size(444, 211);
+            this.startGbox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.startGbox.Size = new System.Drawing.Size(592, 264);
             this.startGbox.TabIndex = 0;
             this.startGbox.TabStop = false;
             this.startGbox.Text = "程序设置";
@@ -590,9 +636,10 @@
             this.autoRunCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.autoRunCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.autoRunCheckBox.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.autoRunCheckBox.Location = new System.Drawing.Point(126, 148);
+            this.autoRunCheckBox.Location = new System.Drawing.Point(168, 185);
+            this.autoRunCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.autoRunCheckBox.Name = "autoRunCheckBox";
-            this.autoRunCheckBox.Size = new System.Drawing.Size(45, 16);
+            this.autoRunCheckBox.Size = new System.Drawing.Size(55, 19);
             this.autoRunCheckBox.TabIndex = 8;
             this.autoRunCheckBox.Text = "启动";
             this.autoRunCheckBox.UseVisualStyleBackColor = false;
@@ -605,9 +652,10 @@
             this.blendableCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.blendableCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.blendableCheckBox.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.blendableCheckBox.Location = new System.Drawing.Point(126, 123);
+            this.blendableCheckBox.Location = new System.Drawing.Point(168, 154);
+            this.blendableCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.blendableCheckBox.Name = "blendableCheckBox";
-            this.blendableCheckBox.Size = new System.Drawing.Size(45, 16);
+            this.blendableCheckBox.Size = new System.Drawing.Size(55, 19);
             this.blendableCheckBox.TabIndex = 7;
             this.blendableCheckBox.Text = "启用";
             this.blendableCheckBox.UseVisualStyleBackColor = false;
@@ -620,9 +668,10 @@
             this.exitStyleCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.exitStyleCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exitStyleCheckBox.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.exitStyleCheckBox.Location = new System.Drawing.Point(126, 99);
+            this.exitStyleCheckBox.Location = new System.Drawing.Point(168, 124);
+            this.exitStyleCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.exitStyleCheckBox.Name = "exitStyleCheckBox";
-            this.exitStyleCheckBox.Size = new System.Drawing.Size(69, 16);
+            this.exitStyleCheckBox.Size = new System.Drawing.Size(85, 19);
             this.exitStyleCheckBox.TabIndex = 6;
             this.exitStyleCheckBox.Text = "有提示框";
             this.exitStyleCheckBox.UseVisualStyleBackColor = false;
@@ -633,9 +682,10 @@
             this.autoPlayCheckBox.BackColor = System.Drawing.Color.Transparent;
             this.autoPlayCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.autoPlayCheckBox.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.autoPlayCheckBox.Location = new System.Drawing.Point(126, 76);
+            this.autoPlayCheckBox.Location = new System.Drawing.Point(168, 95);
+            this.autoPlayCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.autoPlayCheckBox.Name = "autoPlayCheckBox";
-            this.autoPlayCheckBox.Size = new System.Drawing.Size(57, 16);
+            this.autoPlayCheckBox.Size = new System.Drawing.Size(70, 19);
             this.autoPlayCheckBox.TabIndex = 5;
             this.autoPlayCheckBox.Text = "不播放";
             this.autoPlayCheckBox.UseVisualStyleBackColor = false;
@@ -645,9 +695,10 @@
             this.themeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.themeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.themeComboBox.FormattingEnabled = true;
-            this.themeComboBox.Location = new System.Drawing.Point(126, 50);
+            this.themeComboBox.Location = new System.Drawing.Point(168, 62);
+            this.themeComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.themeComboBox.Name = "themeComboBox";
-            this.themeComboBox.Size = new System.Drawing.Size(296, 20);
+            this.themeComboBox.Size = new System.Drawing.Size(393, 23);
             this.themeComboBox.TabIndex = 3;
             // 
             // startBoxCheckBox
@@ -658,9 +709,10 @@
             this.startBoxCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.startBoxCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.startBoxCheckBox.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.startBoxCheckBox.Location = new System.Drawing.Point(126, 28);
+            this.startBoxCheckBox.Location = new System.Drawing.Point(168, 35);
+            this.startBoxCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.startBoxCheckBox.Name = "startBoxCheckBox";
-            this.startBoxCheckBox.Size = new System.Drawing.Size(45, 16);
+            this.startBoxCheckBox.Size = new System.Drawing.Size(55, 19);
             this.startBoxCheckBox.TabIndex = 1;
             this.startBoxCheckBox.Text = "启用";
             this.startBoxCheckBox.UseVisualStyleBackColor = false;
@@ -671,9 +723,10 @@
             this.norLabel.BackColor = System.Drawing.Color.Transparent;
             this.norLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.norLabel.ForeColor = System.Drawing.Color.DarkGreen;
-            this.norLabel.Location = new System.Drawing.Point(33, 29);
+            this.norLabel.Location = new System.Drawing.Point(44, 36);
+            this.norLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.norLabel.Name = "norLabel";
-            this.norLabel.Size = new System.Drawing.Size(65, 132);
+            this.norLabel.Size = new System.Drawing.Size(82, 165);
             this.norLabel.TabIndex = 0;
             this.norLabel.Text = "启动画面：\r\n\r\n主题：\r\n\r\n自动播放：\r\n\r\n退出模式：\r\n\r\n淡入淡出：\r\n\r\n开机启动：";
             this.norLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -684,9 +737,10 @@
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelButton.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.cancelButton.Location = new System.Drawing.Point(1534, 600);
+            this.cancelButton.Location = new System.Drawing.Point(2045, 750);
+            this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.Size = new System.Drawing.Size(100, 29);
             this.cancelButton.TabIndex = 2;
             this.cancelButton.Text = "取消";
             this.cancelButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -698,9 +752,10 @@
             this.applyButton.BackColor = System.Drawing.Color.Transparent;
             this.applyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.applyButton.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.applyButton.Location = new System.Drawing.Point(1450, 600);
+            this.applyButton.Location = new System.Drawing.Point(1933, 750);
+            this.applyButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.applyButton.Name = "applyButton";
-            this.applyButton.Size = new System.Drawing.Size(75, 23);
+            this.applyButton.Size = new System.Drawing.Size(100, 29);
             this.applyButton.TabIndex = 1;
             this.applyButton.Text = "应用";
             this.applyButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -710,11 +765,11 @@
             // ConfigForm
             // 
             this.AcceptButton = this.okButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(1626, 672);
+            this.ClientSize = new System.Drawing.Size(1942, 843);
             this.Name = "ConfigForm";
-            this.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.Padding = new System.Windows.Forms.Padding(4, 0, 4, 4);
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

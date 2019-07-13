@@ -30,5 +30,17 @@ namespace FreshMedia.View
                 return cp;
             }
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // FormEx
+            // 
+            this.ClientSize = new System.Drawing.Size(295, 256);
+            this.Name = "FormEx";
+            this.ResumeLayout(false);
+
+        }
     }
 }

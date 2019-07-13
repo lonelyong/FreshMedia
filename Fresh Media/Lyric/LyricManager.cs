@@ -219,7 +219,9 @@ namespace FreshMedia.Lyric
             #region 获取歌词索引
             _startIndex = CurrentLyricIndex < 0 ? 0 : CurrentLyricIndex;
             _tmpIndex = -1;
-            if (LyricDoc.LyricsCount == 1)
+            if(LyricDoc.LyricsCount == 0)
+                _tmpIndex = -1;
+            else if (LyricDoc.LyricsCount == 1)
                 _tmpIndex = 0;
             else if (0 <= audioPosition && audioPosition < LyricDoc.LyricTimes[0])//防止第一句歌词显示时间不为0，在播放到该句歌词之前，无歌词显示
                 _tmpIndex = 0;
